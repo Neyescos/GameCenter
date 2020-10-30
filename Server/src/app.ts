@@ -8,8 +8,12 @@ import { createServer, IncomingMessage, ServerResponse } from 'http';
 const sql: SqlClient = require("msnodesqlv8");
  
 let modules = new Map<string, IModule>();
+let user = new UserSelector();
 http.createServer(async function (request:IncomingMessage, response:ServerResponse) {
     modules.set("/users",new UserSelector);
+
+    
+
     response.setHeader("Content-Type", "text/html; charset=utf-8;");
     modules.get(request.url?.toString()!)?.Execute(request,response);
 }).listen(3000);
