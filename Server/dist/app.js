@@ -55,7 +55,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var UserSelctor_1 = require("./modules/UserSelctor");
+var UserController_1 = require("./modules/UserController");
 var http = __importStar(require("http"));
 var sql = require("msnodesqlv8");
 var modules = new Map();
@@ -63,7 +63,8 @@ http.createServer(function (request, response) {
     var _a, _b;
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_c) {
-            modules.set("/users", new UserSelctor_1.UserSelector);
+            modules.set("/users", new UserController_1.UserController);
+            modules.set("/", new UserController_1.UserController);
             response.setHeader("Content-Type", "text/html; charset=utf-8;");
             (_b = modules.get((_a = request.url) === null || _a === void 0 ? void 0 : _a.toString())) === null || _b === void 0 ? void 0 : _b.Execute(request, response);
             return [2 /*return*/];
