@@ -6,16 +6,11 @@ import { httpOverHttp } from "tunnel";
 import { IModule } from "../interfaces/IModule";
 import { User } from "../models/user";
 import { Controller } from "./Controller";
-
-
-const sql: SqlClient = require("msnodesqlv8");
-
+import {UserService} from "../services/UserService"
 
 const { parse } = require('querystring');
-const connectionString = "server=.;Database=GameCenter;Trusted_Connection=Yes;Driver={SQL Server Native Client 11.0}";
-const query = "SELECT * FROM [GameCenter].[dbo].[Users]";
 
-
+let userservice = new UserService;
 
 export class UserController implements Controller
 {
@@ -36,19 +31,15 @@ export class UserController implements Controller
                 this.delete(request,response);
         }
     }
+    //
+    //sql select service
+    //userservice.get();
     get(request:IncomingMessage,response:ServerResponse):void{
-        try{
-            sql.query(connectionString, query, (err, rows) => {
-            if(rows!= null)
-            {
-                response.end(JSON.stringify(rows));
-            }
-        });
-        }catch(err)
-        {
-            console.log(err);
-        }
+        response.end(userservice.get());       
     }
+    //
+    //sql insert service
+    //userservice.post(obj);
     post(request:IncomingMessage,response:ServerResponse):void{
         try{
                 let data = '';
@@ -59,9 +50,7 @@ export class UserController implements Controller
                     
                     let obj = parse(data);
                     console.log(obj);
-                    let postquery = `insert into users values('${obj.User_Name.toString()}','${obj.User_Password.toString()}')`;
-                    console.log(postquery);
-                    sql.query(connectionString,postquery);
+                    userservice.post(obj);      
                     response.end('Ok');
                 }
                 );
@@ -71,6 +60,9 @@ export class UserController implements Controller
             console.log("post error")
         }
     }
+     //
+    //sql put service
+    //userservice.put(obj);
     put(request:IncomingMessage,response:ServerResponse):void{
         try{
             let data = '';
@@ -80,9 +72,7 @@ export class UserController implements Controller
                 request.on('end',()=>{
                     let obj = parse(data);
                     console.log(obj);
-                    let putquery = `update users set User_Name='${obj.User_Name}'where UserId=${obj.UserId}`;
-                    console.log(putquery);
-                    sql.query(connectionString,putquery);
+                    userservice.put(obj);
                     response.end('Ok');
                 }
                 );
@@ -91,6 +81,9 @@ export class UserController implements Controller
             console.log(err);
         }
     }
+    //
+    //sql delete service
+    //userservice.delete(obj);
     delete(request:IncomingMessage,response:ServerResponse):void{
         try{
             let data = '';
@@ -100,9 +93,7 @@ export class UserController implements Controller
                 request.on('end',()=>{
                     let obj = parse(data);
                     console.log(obj);
-                    let deletequery = `delete Users where UserId=${obj.UserId}`;
-                    console.log(deletequery);
-                    sql.query(connectionString,deletequery);
+                    userservice.delete(obj);
                     response.end('Ok');
                 }
                 );
