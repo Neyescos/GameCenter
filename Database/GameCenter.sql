@@ -90,3 +90,6 @@ insert into Orders(Order_Date,Current_CustomerId,Ordered_DeviceId,AdminId) value
 ('10-10-2020 10:35',2,2,1),
 ('10-10-2020 10:40',3,4,1),
 ('10-10-2020 11:00',4,3,1);
+
+SELECT  *
+  FROM [GameCenter].[dbo].[Users] where User_Name='Юра' and User_Password='12345678'

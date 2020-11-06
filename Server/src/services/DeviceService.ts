@@ -3,21 +3,23 @@ import { Service } from "./Service";
 const sql: SqlClient = require("msnodesqlv8");
 const connectionString = "server=.;Database=GameCenter;Trusted_Connection=Yes;Driver={SQL Server Native Client 11.0}";
 const query = "SELECT * FROM [GameCenter].[dbo].[Devices]";
+let res:string;
 export class DeviceService implements Service{
-    get(): string {
+    get(): any {
         try{
             sql.query(connectionString, query, (err, rows) => {
             if(rows!= null)
             {
                 
-                return JSON.stringify(rows);
+                res =  JSON.stringify(rows);
             }
+            return res;
         });
         }catch(err)
         {
             console.log(err);
+            return "service get is broken ";
         }
-        return "service get is broken ";
     }
     post(obj: any): void {
         try{

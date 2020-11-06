@@ -35,7 +35,9 @@ export class UserController implements Controller
     //sql select service
     //userservice.get();
     get(request:IncomingMessage,response:ServerResponse):void{
-        response.end(userservice.get());       
+        let info = userservice.get();
+        console.log(info);
+        response.end(info);       
     }
     //
     //sql insert service
