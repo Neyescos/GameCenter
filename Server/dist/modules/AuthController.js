@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 var AuthService_1 = require("../services/AuthService");
 var parse = require('querystring').parse;
+var jwt = require('jsonwebtoken');
 var authService = new AuthService_1.AuthService;
 var AuthController = /** @class */ (function () {
     function AuthController() {
@@ -32,11 +33,20 @@ var AuthController = /** @class */ (function () {
             });
             request.on('end', function () {
                 var obj = parse(data_1);
-                //console.log(obj);
-                var res = authService.post(obj);
-                console.log(res + " res");
-                if (res != null)
-                    response.end('Ok');
+                var res;
+                console.log(obj);
+                setTimeout(function () {
+                    res = authService.post(obj);
+                }, 4000);
+                setTimeout(function () {
+                    //Create jwt token
+                    console.log(res.UserId);
+                    var token = jwt.sign({ _id: res.UserId }, "sqguhbnjkmpkqmnwfihwbf");
+                    response.setHeader('auth-token', token);
+                    console.log(res + " res");
+                    if (res != null)
+                        response.end('Ok');
+                }, 15000);
             });
         }
         catch (err) {

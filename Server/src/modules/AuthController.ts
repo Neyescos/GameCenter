@@ -2,6 +2,8 @@ import { IncomingMessage, ServerResponse } from "http";
 import { Controller } from "./Controller"
 import {AuthService} from "../services/AuthService"
 const { parse } = require('querystring');
+const jwt = require('jsonwebtoken');
+
 let authService = new AuthService;
 export class AuthController implements Controller{
     
@@ -32,10 +34,22 @@ export class AuthController implements Controller{
             request.on('end',()=>{
                 
                 let obj = parse(data);
-                //console.log(obj);
-                let res = authService.post(obj); 
-                console.log(res+" res");     
-                if(res!=null)response.end('Ok');
+                let res:any;
+                console.log(obj);
+                setTimeout(()=>{
+                    res = authService.post(obj);
+                    
+                },4000);
+                setTimeout(()=>{
+                    
+                    //Create jwt token
+                    console.log(res.UserId);
+                    const token = jwt.sign({_id: res.UserId},"sqguhbnjkmpkqmnwfihwbf");
+                    response.setHeader('auth-token',token);
+                    console.log(res+" res");     
+                    if(res!=null)response.end('Ok');
+
+                },15000)
             }
             );
     }catch(err)
