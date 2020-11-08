@@ -9,7 +9,7 @@ import { Controller } from "./Controller";
 import {UserService} from "../services/UserService"
 
 const { parse } = require('querystring');
-
+const verify = require('../verifytoken');
 let userservice = new UserService;
 
 export class UserController implements Controller

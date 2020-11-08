@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 var UserService_1 = require("../services/UserService");
 var parse = require('querystring').parse;
+var verify = require('../verifytoken');
 var userservice = new UserService_1.UserService;
 var UserController = /** @class */ (function () {
     function UserController() {

@@ -51,9 +51,9 @@ var AuthService = /** @class */ (function () {
             object = obj;
             this.dataFunc();
             setTimeout(function () {
-                console.log("потом тут");
-                console.log(selectedUser + " -User info");
-            }, 7000);
+                console.log(selectedUser + "потом тут");
+                console.log(JSON.stringify(selectedUser) + " -User info");
+            }, 2500);
             return selectedUser;
         }
         catch (err) {
@@ -87,17 +87,16 @@ var AuthService = /** @class */ (function () {
                     if (rows != null)
                         //console.log(JSON.stringify(rows));
                         //console.log(+" before");
-                        result += JSON.stringify(rows);
+                        result += JSON.stringify(rows[0]);
                     obj = JSON.parse(result); //[ { UserId: 2, User_Password: '12345678', User_Name: 'Юра' } ]
-                    console.log(obj);
-                    console.log(JSON.stringify(obj)); //[{"UserId":2,"User_Password":"12345678","User_Name":"Юра"}]
-                    jobj = JSON.stringify(obj);
-                    console.log(jobj["UserId"]);
+                    //console.log(JSON.stringify(obj));//[{"UserId":2,"User_Password":"12345678","User_Name":"Юра"}]
+                    console.log(obj.UserId);
+                    console.log(JSON.stringify(obj) + " -- OBJECT");
                     console.log("сначала тут");
-                    selectedUser = result;
+                    selectedUser = obj;
                 });
                 resolve(result);
-            }, 5000);
+            }, 2000);
         });
     };
     return AuthService;

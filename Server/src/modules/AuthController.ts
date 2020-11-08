@@ -39,17 +39,30 @@ export class AuthController implements Controller{
                 setTimeout(()=>{
                     res = authService.post(obj);
                     
-                },4000);
+                    
+                },15000);
                 setTimeout(()=>{
+                    console.log(res+' ---- RESULT');
+                    const result = JSON.stringify(res);
+                    console.log(result);
+
+                    
                     
                     //Create jwt token
-                    console.log(res.UserId);
-                    const token = jwt.sign({_id: res.UserId},"sqguhbnjkmpkqmnwfihwbf");
+                    
+                    const signature = 'drcfvtgbyhunjimk,o';
+                    const expiration = '6h';
+                    
+                    const token =  jwt.sign({ obj }, signature, { expiresIn: expiration });
+                    //const token = jwt.sign({_id: res.UserId},"sqguhbnjkmpkqmnwfihwbf");
                     response.setHeader('auth-token',token);
-                    console.log(res+" res");     
-                    if(res!=null)response.end('Ok');
+                    
 
-                },15000)
+                    console.log(res.UserId);
+                         
+                    if(obj!=null)response.end('Ok');
+
+                },20000)
             }
             );
     }catch(err)
@@ -57,6 +70,7 @@ export class AuthController implements Controller{
         console.log(err);
         console.log("post error")
     }
+    
     }
     get(req: IncomingMessage, res: ServerResponse): void {
         throw new Error("Method not implemented.");

@@ -37,16 +37,21 @@ var AuthController = /** @class */ (function () {
                 console.log(obj);
                 setTimeout(function () {
                     res = authService.post(obj);
-                }, 4000);
-                setTimeout(function () {
-                    //Create jwt token
-                    console.log(res.UserId);
-                    var token = jwt.sign({ _id: res.UserId }, "sqguhbnjkmpkqmnwfihwbf");
-                    response.setHeader('auth-token', token);
-                    console.log(res + " res");
-                    if (res != null)
-                        response.end('Ok');
                 }, 15000);
+                setTimeout(function () {
+                    console.log(res + ' ---- RESULT');
+                    var result = JSON.stringify(res);
+                    console.log(result);
+                    //Create jwt token
+                    var signature = 'drcfvtgbyhunjimk,o';
+                    var expiration = '6h';
+                    var token = jwt.sign({ obj: obj }, signature, { expiresIn: expiration });
+                    //const token = jwt.sign({_id: res.UserId},"sqguhbnjkmpkqmnwfihwbf");
+                    response.setHeader('auth-token', token);
+                    console.log(res.UserId);
+                    if (obj != null)
+                        response.end('Ok');
+                }, 20000);
             });
         }
         catch (err) {
