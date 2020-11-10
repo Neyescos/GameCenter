@@ -9,40 +9,40 @@ let selectedUser:any;
 const { parse } = require('querystring');
 let object:any;
 export class AuthService {
-    post(obj: any):any {
-        try{
-            object = obj;
-          
-            this.dataFunc();
-            setTimeout(()=>{
-                console.log(selectedUser+"потом тут");
-                console.log(JSON.stringify(selectedUser)+" -User info");
+     async post(obj: any):Promise<any> {
+        return new Promise(async (resolve,reject)=>{
+            try{
+                object = obj;
+              
+               await this.dataPuller();
                
                 
+               setTimeout(()=>{
+                    console.log("я вернул значение "+selectedUser);
+                    resolve(selectedUser);
+                },50);
+                
+                
+            }catch(err)
+            {
+                console.log(err);
+                return "login is broken";
+            }
 
-            },2500)
-            return selectedUser;
-            
-        }catch(err)
-        {
-            console.log(err);
-            return "login is broken";
-        }
+        })
+    }
+    getUser():any{
+        
+        return selectedUser;
     }
     
-    async dataFunc() {
-        console.log('before promise call');
-        //3. Await for the first function to complete
-        let result = await this.dataPuller();
-        
-    }
     dataPuller(){
         return new Promise((resolve, reject) => {
             let result ="";
             let obj:any;
             let jobj:any;
             let selectedUserQuery = `SELECT * FROM [GameCenter].[dbo].[Users] where User_Name='${object.User_Name.toString()}' and User_Password='${object.User_Password.toString()}'`;
-            setTimeout(() => {
+            
                 let qr = sql.query(connectionString,selectedUserQuery,(err: any,rows: any )=>{
                     if(rows!=null)
                     //console.log(JSON.stringify(rows));
@@ -60,7 +60,7 @@ export class AuthService {
                 }
                 );
                 resolve(result);
-            }, 2000)
+            
         })
         
         

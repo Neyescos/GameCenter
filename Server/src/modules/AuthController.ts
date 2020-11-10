@@ -31,20 +31,20 @@ export class AuthController implements Controller{
             request.on('data', chunk => {
                 data += chunk.toString();
             });
-            request.on('end',()=>{
+            request.on('end',async ()=>{
                 
                 let obj = parse(data);
-                let res:any;
+                let result:any;
                 console.log(obj);
-                setTimeout(()=>{
-                    res = authService.post(obj);
+                
+                
+                let res =await authService.post(obj).then(()=>{console.log(authService.getUser()); result =authService.getUser();});
                     
+                
+            //setTimeout(()=>{
                     
-                },15000);
-                setTimeout(()=>{
-                    console.log(res+' ---- RESULT');
-                    const result = JSON.stringify(res);
-                    console.log(result);
+                    console.log(result+' ---- RESULT');
+                    
 
                     
                     
@@ -58,11 +58,13 @@ export class AuthController implements Controller{
                     response.setHeader('auth-token',token);
                     
 
-                    console.log(res.UserId);
+                    console.log(JSON.stringify(result)+" --- User found");
                          
-                    if(obj!=null)response.end('Ok');
+                    if(result!=null)response.end('Ok')
+                    else response.statusCode;
 
-                },20000)
+                //},500)
+                
             }
             );
     }catch(err)

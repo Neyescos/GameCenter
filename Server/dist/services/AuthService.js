@@ -47,34 +47,37 @@ var AuthService = /** @class */ (function () {
     function AuthService() {
     }
     AuthService.prototype.post = function (obj) {
-        try {
-            object = obj;
-            this.dataFunc();
-            setTimeout(function () {
-                console.log(selectedUser + "потом тут");
-                console.log(JSON.stringify(selectedUser) + " -User info");
-            }, 2500);
-            return selectedUser;
-        }
-        catch (err) {
-            console.log(err);
-            return "login is broken";
-        }
-    };
-    AuthService.prototype.dataFunc = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var result;
+            var _this = this;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        console.log('before promise call');
-                        return [4 /*yield*/, this.dataPuller()];
-                    case 1:
-                        result = _a.sent();
-                        return [2 /*return*/];
-                }
+                return [2 /*return*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+                        var err_1;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    _a.trys.push([0, 2, , 3]);
+                                    object = obj;
+                                    return [4 /*yield*/, this.dataPuller()];
+                                case 1:
+                                    _a.sent();
+                                    setTimeout(function () {
+                                        console.log("я вернул значение " + selectedUser);
+                                        resolve(selectedUser);
+                                    }, 50);
+                                    return [3 /*break*/, 3];
+                                case 2:
+                                    err_1 = _a.sent();
+                                    console.log(err_1);
+                                    return [2 /*return*/, "login is broken"];
+                                case 3: return [2 /*return*/];
+                            }
+                        });
+                    }); })];
             });
         });
+    };
+    AuthService.prototype.getUser = function () {
+        return selectedUser;
     };
     AuthService.prototype.dataPuller = function () {
         return new Promise(function (resolve, reject) {
@@ -82,21 +85,19 @@ var AuthService = /** @class */ (function () {
             var obj;
             var jobj;
             var selectedUserQuery = "SELECT * FROM [GameCenter].[dbo].[Users] where User_Name='" + object.User_Name.toString() + "' and User_Password='" + object.User_Password.toString() + "'";
-            setTimeout(function () {
-                var qr = sql.query(connectionString, selectedUserQuery, function (err, rows) {
-                    if (rows != null)
-                        //console.log(JSON.stringify(rows));
-                        //console.log(+" before");
-                        result += JSON.stringify(rows[0]);
-                    obj = JSON.parse(result); //[ { UserId: 2, User_Password: '12345678', User_Name: 'Юра' } ]
-                    //console.log(JSON.stringify(obj));//[{"UserId":2,"User_Password":"12345678","User_Name":"Юра"}]
-                    console.log(obj.UserId);
-                    console.log(JSON.stringify(obj) + " -- OBJECT");
-                    console.log("сначала тут");
-                    selectedUser = obj;
-                });
-                resolve(result);
-            }, 2000);
+            var qr = sql.query(connectionString, selectedUserQuery, function (err, rows) {
+                if (rows != null)
+                    //console.log(JSON.stringify(rows));
+                    //console.log(+" before");
+                    result += JSON.stringify(rows[0]);
+                obj = JSON.parse(result); //[ { UserId: 2, User_Password: '12345678', User_Name: 'Юра' } ]
+                //console.log(JSON.stringify(obj));//[{"UserId":2,"User_Password":"12345678","User_Name":"Юра"}]
+                console.log(obj.UserId);
+                console.log(JSON.stringify(obj) + " -- OBJECT");
+                console.log("сначала тут");
+                selectedUser = obj;
+            });
+            resolve(result);
         });
     };
     return AuthService;
