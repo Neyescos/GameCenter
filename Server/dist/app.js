@@ -58,6 +58,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var UserController_1 = require("./modules/UserController");
 var http = __importStar(require("http"));
 var AuthController_1 = require("./modules/AuthController");
+var DeviceController_1 = require("./modules/DeviceController");
 var sql = require("msnodesqlv8");
 var modules = new Map();
 http.createServer(function (request, response) {
@@ -67,6 +68,7 @@ http.createServer(function (request, response) {
             modules.set("/users", new UserController_1.UserController);
             modules.set("/", new UserController_1.UserController);
             modules.set("/login", new AuthController_1.AuthController);
+            modules.set("/devices", new DeviceController_1.DeviceController);
             response.setHeader("Content-Type", "text/html; charset=utf-8;");
             (_b = modules.get((_a = request.url) === null || _a === void 0 ? void 0 : _a.toString())) === null || _b === void 0 ? void 0 : _b.Execute(request, response);
             return [2 /*return*/];

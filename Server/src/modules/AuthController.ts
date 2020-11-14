@@ -57,13 +57,13 @@ export class AuthController implements Controller{
                     const signature = 'drcfvtgbyhunjimk,o';
                     
                         
-                    const token =  jwt.sign( {foo: result.UserId} , signature);
+                    const token =  jwt.sign( {foo: result.UserId} , signature, { expiresIn: '5h' });
                     //const token = jwt.sign({_id: res.UserId},"sqguhbnjkmpkqmnwfihwbf");
                     //response.setHeader('auth-token',token);
                         
     
                     console.log(JSON.stringify(result)+" --- User found");
-                    console.log(response.getHeader('auth-token'));
+                    console.log(token);
                    
                     if(result!=null)response.end('Ok');
                     else response.statusCode;

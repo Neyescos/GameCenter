@@ -1,9 +1,12 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { IModule } from "../interfaces/IModule";
+import { Verify } from "../verifytoken";
 
 export abstract class Controller implements IModule
 {
     Execute(req: IncomingMessage, res: ServerResponse): void {
+        let ver = new Verify;
+        ver.verify(req,res);
         let request = req.method;
         switch (request){
             case 'GET':

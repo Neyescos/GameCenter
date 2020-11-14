@@ -9,11 +9,14 @@ import { httpOverHttp } from "tunnel";
 import { IModule } from "../interfaces/IModule";
 import { User } from "../models/user";
 import { Controller } from "./Controller";
+import { Verify } from "../verifytoken";
 const { parse } = require('querystring');
 let deviceservice = new DeviceService;
 export class DeviceController implements Controller{
     Execute(request: IncomingMessage, response: ServerResponse): void {
         const querystring = require('querystring')
+        let ver = new Verify;
+        ver.verify(request,response);
         var req = request.method;
         switch (req){
             case 'GET':
@@ -32,8 +35,22 @@ export class DeviceController implements Controller{
     //
     //sql select service
     //deviceservice.get();
-    get(request:IncomingMessage,response:ServerResponse):void{
-        response.end(deviceservice.get());       
+    async get(request:IncomingMessage,response:ServerResponse):Promise<any>{
+        try{
+            let res:string;
+            
+            let info = await deviceservice.get().then(()=>{res = deviceservice.getRes()});
+            //console.log(res +'---- INFO');
+            setTimeout(() => {
+                
+                response.end(res);
+            }, 10);
+
+            
+        }catch(err){
+            console.log('something is gone wrong');
+            
+        }       
     }
     //
     //sql insert service

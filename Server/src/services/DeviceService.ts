@@ -1,25 +1,32 @@
 import { SqlClient } from "msnodesqlv8";
+import { resolve } from "path";
 import { Service } from "./Service";
 const sql: SqlClient = require("msnodesqlv8");
 const connectionString = "server=.;Database=GameCenter;Trusted_Connection=Yes;Driver={SQL Server Native Client 11.0}";
 const query = "SELECT * FROM [GameCenter].[dbo].[Devices]";
 let res:string;
 export class DeviceService implements Service{
-    get(): any {
-        try{
-            sql.query(connectionString, query, (err, rows) => {
-            if(rows!= null)
+    async get():Promise<any> {
+        return new Promise(async (resolve,reject)=>{
+            try{
+                sql.query(connectionString, query, (err, rows) => {
+                    if(rows!= null){
+                        //console.log(JSON.stringify(rows));
+                        res =JSON.stringify(rows);
+                    } 
+                });
+                setTimeout(()=>{
+                    resolve(res);
+                },100);
+            }catch(err)
             {
-                
-                res =  JSON.stringify(rows);
+                console.log(err);
+                return "service get is broken ";
             }
-            return res;
-        });
-        }catch(err)
-        {
-            console.log(err);
-            return "service get is broken ";
-        }
+        })
+    }
+    getRes():string{
+        return res;
     }
     post(obj: any): void {
         try{
