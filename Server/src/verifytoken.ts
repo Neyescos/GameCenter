@@ -2,14 +2,20 @@
 import { IncomingMessage, ServerResponse } from "http";
 
 const jwt = require('jsonwebtoken');
+export class Verify{
 
-function verify(req: IncomingMessage,res: ServerResponse,next: any){
-    const token = res.getHeader('auth-token');
-    if(!token)return res.end('Access denied'); 
-    try{
-        const verify = jwt.verify(token,"sqguhbnjkmpkqmnwfihwbf");
+    public verify(req: IncomingMessage,res: ServerResponse){
         
-    }catch(err){
-        res.end('Invalid token');
+        const token = res.getHeader('auth-token');
+        let headers =res.hasHeader('auth-token'); //false
+        console.log(headers +"headers");
+        console.log(token+ '     ----- TOKEN');
+        if(!token)return res.end('Access denied'); 
+        try{
+            const verify = jwt.verify(token,"drcfvtgbyhunjimk,o");
+            
+        }catch(err){
+            res.end('Invalid token');
+        }
     }
 }

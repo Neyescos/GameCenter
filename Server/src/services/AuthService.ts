@@ -1,4 +1,4 @@
-import { info } from "console";
+import { exception, info } from "console";
 import { SqlClient } from "msnodesqlv8";
 import { resolve } from "path";
 import { Service } from "./Service";
@@ -20,7 +20,7 @@ export class AuthService {
                setTimeout(()=>{
                     console.log("я вернул значение "+selectedUser);
                     resolve(selectedUser);
-                },50);
+                },100);
                 
                 
             }catch(err)
@@ -37,32 +37,44 @@ export class AuthService {
     }
     
     dataPuller(){
-        return new Promise((resolve, reject) => {
-            let result ="";
-            let obj:any;
-            let jobj:any;
-            let selectedUserQuery = `SELECT * FROM [GameCenter].[dbo].[Users] where User_Name='${object.User_Name.toString()}' and User_Password='${object.User_Password.toString()}'`;
+        try{
+            return new Promise((resolve, reject) => {
+                let result ="";
+                let obj:any;
+                let jobj:any;
+                let selectedUserQuery = `SELECT * FROM [GameCenter].[dbo].[Users] where User_Name='${object.User_Name.toString()}' and User_Password='${object.User_Password.toString()}'`;
+                
+                    let qr = sql.query(connectionString,selectedUserQuery,(err: any,rows: any )=>{
+                        if(rows[0]==undefined||rows==null){
+                            console.log(JSON.stringify(rows[0]));
+                            throw err;
+                        }
+                        if(rows!=null&& rows!=undefined){
+                            console.log(rows[0]);
+                            
+                            result +=JSON.stringify(rows[0]);
+                            obj=JSON.parse(result);//[ { UserId: 2, User_Password: '12345678', User_Name: 'Юра' } ]
+                            
+                            //console.log(JSON.stringify(obj));//[{"UserId":2,"User_Password":"12345678","User_Name":"Юра"}]
+                            
+                            console.log(obj.UserId);
+                            console.log(JSON.stringify(obj)+" -- OBJECT");
+                            console.log("сначала тут");
+                            selectedUser =obj;
+    
+                        }
+                        
+                    }
+                    );
+                    resolve(result);
+                
+            })
             
-                let qr = sql.query(connectionString,selectedUserQuery,(err: any,rows: any )=>{
-                    if(rows!=null)
-                    //console.log(JSON.stringify(rows));
-                    //console.log(+" before");
-                    result +=JSON.stringify(rows[0]);
-                    obj=JSON.parse(result);//[ { UserId: 2, User_Password: '12345678', User_Name: 'Юра' } ]
-                    
-                    //console.log(JSON.stringify(obj));//[{"UserId":2,"User_Password":"12345678","User_Name":"Юра"}]
-                    
-                    console.log(obj.UserId);
-                    console.log(JSON.stringify(obj)+" -- OBJECT");
-                    console.log("сначала тут");
-                    selectedUser =obj;
-                    
-                }
-                );
-                resolve(result);
-            
-        })
-        
+
+        }catch(err){
+            console.log(err);
+            selectedUser = null;
+        }
         
     }
     

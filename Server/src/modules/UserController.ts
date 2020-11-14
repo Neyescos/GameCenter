@@ -7,15 +7,18 @@ import { IModule } from "../interfaces/IModule";
 import { User } from "../models/user";
 import { Controller } from "./Controller";
 import {UserService} from "../services/UserService"
-
+import{Verify} from "..//verifytoken"
+import { verify } from "crypto";
 const { parse } = require('querystring');
-const verify = require('../verifytoken');
+
 let userservice = new UserService;
 
 export class UserController implements Controller
 {
     Execute(request:IncomingMessage,response:ServerResponse):void {
         const querystring = require('querystring')
+        let ver = new Verify;
+        ver.verify(request,response);
         var req = request.method;
         switch (req){
             case 'GET':
@@ -35,9 +38,15 @@ export class UserController implements Controller
     //sql select service
     //userservice.get();
     get(request:IncomingMessage,response:ServerResponse):void{
-        let info = userservice.get();
-        console.log(info);
-        response.end(info);       
+        try{
+
+            let info = userservice.get();
+            console.log(info);
+            response.end(info);       
+        }catch(err){
+            console.log('something is gone wrong');
+            
+        }
     }
     //
     //sql insert service

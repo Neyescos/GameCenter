@@ -2,14 +2,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 var UserService_1 = require("../services/UserService");
+var verifytoken_1 = require("..//verifytoken");
 var parse = require('querystring').parse;
-var verify = require('../verifytoken');
 var userservice = new UserService_1.UserService;
 var UserController = /** @class */ (function () {
     function UserController() {
     }
     UserController.prototype.Execute = function (request, response) {
         var querystring = require('querystring');
+        var ver = new verifytoken_1.Verify;
+        ver.verify(request, response);
         var req = request.method;
         switch (req) {
             case 'GET':
@@ -29,9 +31,14 @@ var UserController = /** @class */ (function () {
     //sql select service
     //userservice.get();
     UserController.prototype.get = function (request, response) {
-        var info = userservice.get();
-        console.log(info);
-        response.end(info);
+        try {
+            var info = userservice.get();
+            console.log(info);
+            response.end(info);
+        }
+        catch (err) {
+            console.log('something is gone wrong');
+        }
     };
     //
     //sql insert service

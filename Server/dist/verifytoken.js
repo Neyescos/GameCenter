@@ -1,14 +1,24 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Verify = void 0;
 var jwt = require('jsonwebtoken');
-function verify(req, res, next) {
-    var token = res.getHeader('auth-token');
-    if (!token)
-        return res.end('Access denied');
-    try {
-        var verify_1 = jwt.verify(token, "sqguhbnjkmpkqmnwfihwbf");
+var Verify = /** @class */ (function () {
+    function Verify() {
     }
-    catch (err) {
-        res.end('Invalid token');
-    }
-}
+    Verify.prototype.verify = function (req, res) {
+        var token = res.getHeader('auth-token');
+        var headers = res.hasHeader('auth-token'); //false
+        console.log(headers + "headers");
+        console.log(token + '     ----- TOKEN');
+        if (!token)
+            return res.end('Access denied');
+        try {
+            var verify = jwt.verify(token, "drcfvtgbyhunjimk,o");
+        }
+        catch (err) {
+            res.end('Invalid token');
+        }
+    };
+    return Verify;
+}());
+exports.Verify = Verify;

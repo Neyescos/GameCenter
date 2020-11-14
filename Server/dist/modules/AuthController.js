@@ -69,28 +69,38 @@ var AuthController = /** @class */ (function () {
                 data_1 += chunk.toString();
             });
             request.on('end', function () { return __awaiter(_this, void 0, void 0, function () {
-                var obj, result, res, signature, expiration, token;
+                var obj, result_1, res, signature, token, err_1;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
+                            _a.trys.push([0, 2, , 3]);
                             obj = parse(data_1);
                             console.log(obj);
-                            return [4 /*yield*/, authService.post(obj).then(function () { console.log(authService.getUser()); result = authService.getUser(); })];
+                            return [4 /*yield*/, authService.post(obj).then(function () { console.log(authService.getUser()); result_1 = authService.getUser(); })];
                         case 1:
                             res = _a.sent();
-                            //setTimeout(()=>{
-                            console.log(result + ' ---- RESULT');
+                            if (result_1 == undefined || result_1 == null) {
+                                response.end('Invalid values');
+                                throw "invalid values inserted";
+                            }
+                            console.log(result_1 + ' ---- RESULT');
                             signature = 'drcfvtgbyhunjimk,o';
-                            expiration = '6h';
-                            token = jwt.sign({ obj: obj }, signature, { expiresIn: expiration });
+                            token = jwt.sign({ foo: result_1.UserId }, signature);
                             //const token = jwt.sign({_id: res.UserId},"sqguhbnjkmpkqmnwfihwbf");
                             response.setHeader('auth-token', token);
-                            console.log(JSON.stringify(result) + " --- User found");
-                            if (result != null)
-                                response.end('Ok');
+                            console.log(JSON.stringify(result_1) + " --- User found");
+                            console.log(response.getHeader('auth-token'));
+                            if (result_1 != null)
+                                response.end(response.getHeader('auth-token'));
                             else
                                 response.statusCode;
-                            return [2 /*return*/];
+                            return [3 /*break*/, 3];
+                        case 2:
+                            err_1 = _a.sent();
+                            console.log(err_1);
+                            response.end('something is gone wrong');
+                            return [3 /*break*/, 3];
+                        case 3: return [2 /*return*/];
                     }
                 });
             }); });
@@ -101,7 +111,7 @@ var AuthController = /** @class */ (function () {
         }
     };
     AuthController.prototype.get = function (req, res) {
-        throw new Error("Method not implemented.");
+        res.end('введите свои данные');
     };
     AuthController.prototype.put = function (req, res) {
         throw new Error("Method not implemented.");

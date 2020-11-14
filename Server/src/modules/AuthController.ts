@@ -1,6 +1,7 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { Controller } from "./Controller"
 import {AuthService} from "../services/AuthService"
+import { error, exception } from "console";
 const { parse } = require('querystring');
 const jwt = require('jsonwebtoken');
 
@@ -32,38 +33,47 @@ export class AuthController implements Controller{
                 data += chunk.toString();
             });
             request.on('end',async ()=>{
-                
+                try{
                 let obj = parse(data);
                 let result:any;
                 console.log(obj);
                 
                 
-                let res =await authService.post(obj).then(()=>{console.log(authService.getUser()); result =authService.getUser();});
+                    let res =await authService.post(obj).then(()=>{console.log(authService.getUser()); result =authService.getUser();});
+                        
+                    if(result ==undefined|| result==null){
+                        response.end('Invalid values');
+                        throw "invalid values inserted";
+                    }
                     
-                
-            //setTimeout(()=>{
-                    
+                        
                     console.log(result+' ---- RESULT');
-                    
-
-                    
-                    
+                        
+    
+                        
+                        
                     //Create jwt token
-                    
+                        
                     const signature = 'drcfvtgbyhunjimk,o';
-                    const expiration = '6h';
                     
-                    const token =  jwt.sign({ obj }, signature, { expiresIn: expiration });
+                        
+                    const token =  jwt.sign( {foo: result.UserId} , signature);
                     //const token = jwt.sign({_id: res.UserId},"sqguhbnjkmpkqmnwfihwbf");
-                    response.setHeader('auth-token',token);
-                    
-
+                    //response.setHeader('auth-token',token);
+                        
+    
                     console.log(JSON.stringify(result)+" --- User found");
-                         
-                    if(result!=null)response.end('Ok')
+                    console.log(response.getHeader('auth-token'));
+                   
+                    if(result!=null)response.end('Ok');
                     else response.statusCode;
 
-                //},500)
+                }catch(err){
+                    console.log(err);
+                    response.end('something is gone wrong');
+                }
+
+                
                 
             }
             );
@@ -75,7 +85,7 @@ export class AuthController implements Controller{
     
     }
     get(req: IncomingMessage, res: ServerResponse): void {
-        throw new Error("Method not implemented.");
+        res.end('введите свои данные');
     }
     put(req: IncomingMessage, res: ServerResponse): void {
         throw new Error("Method not implemented.");

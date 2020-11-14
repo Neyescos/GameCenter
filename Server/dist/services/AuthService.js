@@ -63,7 +63,7 @@ var AuthService = /** @class */ (function () {
                                     setTimeout(function () {
                                         console.log("я вернул значение " + selectedUser);
                                         resolve(selectedUser);
-                                    }, 50);
+                                    }, 100);
                                     return [3 /*break*/, 3];
                                 case 2:
                                     err_1 = _a.sent();
@@ -80,25 +80,35 @@ var AuthService = /** @class */ (function () {
         return selectedUser;
     };
     AuthService.prototype.dataPuller = function () {
-        return new Promise(function (resolve, reject) {
-            var result = "";
-            var obj;
-            var jobj;
-            var selectedUserQuery = "SELECT * FROM [GameCenter].[dbo].[Users] where User_Name='" + object.User_Name.toString() + "' and User_Password='" + object.User_Password.toString() + "'";
-            var qr = sql.query(connectionString, selectedUserQuery, function (err, rows) {
-                if (rows != null)
-                    //console.log(JSON.stringify(rows));
-                    //console.log(+" before");
-                    result += JSON.stringify(rows[0]);
-                obj = JSON.parse(result); //[ { UserId: 2, User_Password: '12345678', User_Name: 'Юра' } ]
-                //console.log(JSON.stringify(obj));//[{"UserId":2,"User_Password":"12345678","User_Name":"Юра"}]
-                console.log(obj.UserId);
-                console.log(JSON.stringify(obj) + " -- OBJECT");
-                console.log("сначала тут");
-                selectedUser = obj;
+        try {
+            return new Promise(function (resolve, reject) {
+                var result = "";
+                var obj;
+                var jobj;
+                var selectedUserQuery = "SELECT * FROM [GameCenter].[dbo].[Users] where User_Name='" + object.User_Name.toString() + "' and User_Password='" + object.User_Password.toString() + "'";
+                var qr = sql.query(connectionString, selectedUserQuery, function (err, rows) {
+                    if (rows[0] == undefined || rows == null) {
+                        console.log(JSON.stringify(rows[0]));
+                        throw err;
+                    }
+                    if (rows != null && rows != undefined) {
+                        console.log(rows[0]);
+                        result += JSON.stringify(rows[0]);
+                        obj = JSON.parse(result); //[ { UserId: 2, User_Password: '12345678', User_Name: 'Юра' } ]
+                        //console.log(JSON.stringify(obj));//[{"UserId":2,"User_Password":"12345678","User_Name":"Юра"}]
+                        console.log(obj.UserId);
+                        console.log(JSON.stringify(obj) + " -- OBJECT");
+                        console.log("сначала тут");
+                        selectedUser = obj;
+                    }
+                });
+                resolve(result);
             });
-            resolve(result);
-        });
+        }
+        catch (err) {
+            console.log(err);
+            selectedUser = null;
+        }
     };
     return AuthService;
 }());
