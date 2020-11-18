@@ -34,10 +34,9 @@ export class AuthController implements Controller{
             });
             request.on('end',async ()=>{
                 try{
-                let obj = parse(data);
-                let result:any;
-                console.log(obj);
-                
+                    let obj = parse(data);
+                    let result:any;
+                    console.log(obj);
                 
                     let res =await authService.post(obj).then(()=>{console.log(authService.getUser()); result =authService.getUser();});
                         
@@ -45,27 +44,22 @@ export class AuthController implements Controller{
                         response.end('Invalid values');
                         throw "invalid values inserted";
                     }
-                    
                         
                     console.log(result+' ---- RESULT');
-                        
-    
-                        
                         
                     //Create jwt token
                         
                     const signature = 'drcfvtgbyhunjimk,o';
                     
                         
-                    const token =  jwt.sign( {foo: result.UserId} , signature, { expiresIn: '5h' });
-                    //const token = jwt.sign({_id: res.UserId},"sqguhbnjkmpkqmnwfihwbf");
-                    //response.setHeader('auth-token',token);
+                    const token =  jwt.sign( {UserId: result.UserId} , signature, { expiresIn: '5h' });
+                    
                         
     
                     console.log(JSON.stringify(result)+" --- User found");
                     console.log(token);
                    
-                    if(result!=null)response.end('Ok');
+                    if(result!=null)response.end(token);
                     else response.statusCode;
 
                 }catch(err){
@@ -85,7 +79,7 @@ export class AuthController implements Controller{
     
     }
     get(req: IncomingMessage, res: ServerResponse): void {
-        res.end('введите свои данные');
+        res.end('lol');
     }
     put(req: IncomingMessage, res: ServerResponse): void {
         throw new Error("Method not implemented.");

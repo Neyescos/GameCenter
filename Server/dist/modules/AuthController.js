@@ -91,7 +91,7 @@ var AuthController = /** @class */ (function () {
                             console.log(JSON.stringify(result_1) + " --- User found");
                             console.log(token);
                             if (result_1 != null)
-                                response.end('Ok');
+                                response.end(token);
                             else
                                 response.statusCode;
                             return [3 /*break*/, 3];
@@ -111,7 +111,7 @@ var AuthController = /** @class */ (function () {
         }
     };
     AuthController.prototype.get = function (req, res) {
-        res.end('введите свои данные');
+        res.end('lol');
     };
     AuthController.prototype.put = function (req, res) {
         throw new Error("Method not implemented.");

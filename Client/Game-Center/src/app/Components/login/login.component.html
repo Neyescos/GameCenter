@@ -1,0 +1,19 @@
+<h1  style="margin-left: 46%;padding-top: 10%;">
+    Авторизация
+</h1>
+<form [formGroup]="myForm"novalidate (ngSubmit)="onSubmit()" style="margin-left:45%;margin-top: 3%;">
+    <br>
+    <mat-form-field>
+        <input matInput placeholder="User Name" formControlName="username"> 
+      
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput placeholder="Password" formControlName="password"> 
+        <mat-error *ngIf="">
+            Fullfill the field
+       </mat-error>
+    </mat-form-field>
+    <br>
+</form>
+<button mat-raised-button color="primary"(click)="onSubmit()" style="margin-left: 48%;">Submit</button>
