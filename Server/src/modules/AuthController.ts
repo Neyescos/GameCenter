@@ -2,6 +2,7 @@ import { IncomingMessage, ServerResponse } from "http";
 import { Controller } from "./Controller"
 import {AuthService} from "../services/AuthService"
 import { error, exception } from "console";
+import { json } from "body-parser";
 const { parse } = require('querystring');
 const jwt = require('jsonwebtoken');
 
@@ -55,11 +56,12 @@ export class AuthController implements Controller{
                     const token =  jwt.sign( {UserId: result.UserId} , signature, { expiresIn: '5h' });
                     
                         
-    
+                    
                     console.log(JSON.stringify(result)+" --- User found");
+                    
                     console.log(token);
-                   
-                    if(result!=null)response.end(token);
+                    
+                    if(result!=null)response.end(JSON.stringify({token:`${token}`,name:'Authorization'}));
                     else response.statusCode;
 
                 }catch(err){

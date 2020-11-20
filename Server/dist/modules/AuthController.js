@@ -85,13 +85,11 @@ var AuthController = /** @class */ (function () {
                             }
                             console.log(result_1 + ' ---- RESULT');
                             signature = 'drcfvtgbyhunjimk,o';
-                            token = jwt.sign({ foo: result_1.UserId }, signature, { expiresIn: '5h' });
-                            //const token = jwt.sign({_id: res.UserId},"sqguhbnjkmpkqmnwfihwbf");
-                            //response.setHeader('auth-token',token);
+                            token = jwt.sign({ UserId: result_1.UserId }, signature, { expiresIn: '5h' });
                             console.log(JSON.stringify(result_1) + " --- User found");
                             console.log(token);
                             if (result_1 != null)
-                                response.end(token);
+                                response.end(JSON.stringify({ token: "" + token, name: 'Authorization' }));
                             else
                                 response.statusCode;
                             return [3 /*break*/, 3];

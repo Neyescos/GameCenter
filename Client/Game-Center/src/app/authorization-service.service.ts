@@ -17,7 +17,7 @@ export class AuthorizationServiceService {
     console.log('вошел');
     let result:Observable<UserModel>;
     result = this.http.post<UserModel>('http://localhost:3000/login',body,options);
-    console.log(result);
+    //result.forEach(x=>console.log(x));
     return result;
   }
   

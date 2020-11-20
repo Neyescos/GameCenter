@@ -63,7 +63,7 @@ var AuthService = /** @class */ (function () {
                                     setTimeout(function () {
                                         console.log("я вернул значение " + selectedUser);
                                         resolve(selectedUser);
-                                    }, 100);
+                                    }, 150);
                                     return [3 /*break*/, 3];
                                 case 2:
                                     err_1 = _a.sent();

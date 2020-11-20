@@ -22,6 +22,13 @@ var corsOptions = {
     optionsSuccessStatus: 200,
     methods: "GET, PUT, POST, DELETE"
 };
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, PATCH, PUT, POST, DELETE, OPTIONS");
+    res.header('Content-Type', 'application/json');
+    next();
+});
 app.use(cors_1.default(corsOptions));
 // define a route handler for the default home page
 app.get("/", function (req, res) {
