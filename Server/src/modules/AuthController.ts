@@ -41,32 +41,34 @@ export class AuthController implements Controller{
                 
                     let res =await authService.post(obj).then(()=>{console.log(authService.getUser()); result =authService.getUser();});
                         
-                    if(result ==undefined|| result==null){
+                    if(result ==undefined|| result==null||result=='invalid values'){
                         response.end('Invalid values');
-                        throw "invalid values inserted";
+                        
                     }
+                    else{
+
+                        console.log(result+' ---- RESULT');
+                            
+                        //Create jwt token
+                            
+                        const signature = 'drcfvtgbyhunjimk,o';
                         
-                    console.log(result+' ---- RESULT');
+                            
+                        const token =  jwt.sign( {UserId: result.UserId} , signature, { expiresIn: '5h' });
                         
-                    //Create jwt token
+                            
                         
-                    const signature = 'drcfvtgbyhunjimk,o';
-                    
+                        console.log(JSON.stringify(result)+" --- User found");
                         
-                    const token =  jwt.sign( {UserId: result.UserId} , signature, { expiresIn: '5h' });
-                    
+                        console.log(token);
                         
-                    
-                    console.log(JSON.stringify(result)+" --- User found");
-                    
-                    console.log(token);
-                    
-                    if(result!=null)response.end(JSON.stringify({token:`${token}`,name:'Authorization'}));
-                    else response.statusCode;
+                        if(result!=null)response.end(JSON.stringify({token:`${token}`,name:'Authorization'}));
+                        else response.statusCode;
+                    }  
 
                 }catch(err){
                     console.log(err);
-                    response.end('something is gone wrong');
+                    
                 }
 
                 

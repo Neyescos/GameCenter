@@ -79,24 +79,24 @@ var AuthController = /** @class */ (function () {
                             return [4 /*yield*/, authService.post(obj).then(function () { console.log(authService.getUser()); result_1 = authService.getUser(); })];
                         case 1:
                             res = _a.sent();
-                            if (result_1 == undefined || result_1 == null) {
+                            if (result_1 == undefined || result_1 == null || result_1 == 'invalid values') {
                                 response.end('Invalid values');
-                                throw "invalid values inserted";
                             }
-                            console.log(result_1 + ' ---- RESULT');
-                            signature = 'drcfvtgbyhunjimk,o';
-                            token = jwt.sign({ UserId: result_1.UserId }, signature, { expiresIn: '5h' });
-                            console.log(JSON.stringify(result_1) + " --- User found");
-                            console.log(token);
-                            if (result_1 != null)
-                                response.end(JSON.stringify({ token: "" + token, name: 'Authorization' }));
-                            else
-                                response.statusCode;
+                            else {
+                                console.log(result_1 + ' ---- RESULT');
+                                signature = 'drcfvtgbyhunjimk,o';
+                                token = jwt.sign({ UserId: result_1.UserId }, signature, { expiresIn: '5h' });
+                                console.log(JSON.stringify(result_1) + " --- User found");
+                                console.log(token);
+                                if (result_1 != null)
+                                    response.end(JSON.stringify({ token: "" + token, name: 'Authorization' }));
+                                else
+                                    response.statusCode;
+                            }
                             return [3 /*break*/, 3];
                         case 2:
                             err_1 = _a.sent();
                             console.log(err_1);
-                            response.end('something is gone wrong');
                             return [3 /*break*/, 3];
                         case 3: return [2 /*return*/];
                     }

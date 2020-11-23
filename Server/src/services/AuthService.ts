@@ -20,7 +20,7 @@ export class AuthService {
                setTimeout(()=>{
                     console.log("я вернул значение "+selectedUser);
                     resolve(selectedUser);
-                },150);
+                },200);
                 
                 
             }catch(err)
@@ -47,7 +47,7 @@ export class AuthService {
                     let qr = sql.query(connectionString,selectedUserQuery,(err: any,rows: any )=>{
                         if(rows[0]==undefined||rows==null){
                             console.log(JSON.stringify(rows[0]));
-                            throw err;
+                            selectedUser = 'Invalid values';
                         }
                         if(rows!=null&& rows!=undefined){
                             console.log(rows[0]);

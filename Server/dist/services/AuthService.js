@@ -63,7 +63,7 @@ var AuthService = /** @class */ (function () {
                                     setTimeout(function () {
                                         console.log("я вернул значение " + selectedUser);
                                         resolve(selectedUser);
-                                    }, 150);
+                                    }, 200);
                                     return [3 /*break*/, 3];
                                 case 2:
                                     err_1 = _a.sent();
@@ -89,7 +89,7 @@ var AuthService = /** @class */ (function () {
                 var qr = sql.query(connectionString, selectedUserQuery, function (err, rows) {
                     if (rows[0] == undefined || rows == null) {
                         console.log(JSON.stringify(rows[0]));
-                        throw err;
+                        selectedUser = 'Invalid values';
                     }
                     if (rows != null && rows != undefined) {
                         console.log(rows[0]);
