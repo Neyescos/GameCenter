@@ -10,10 +10,10 @@
     <br>
     <mat-form-field>
         <input matInput placeholder="Password" formControlName="password"> 
-        <mat-error *ngIf="">
-            Fullfill the field
-       </mat-error>
     </mat-form-field>
+    <mat-error *ngIf="getCorrect()==false">
+                Entered fields are incorrect
+    </mat-error>
     <br>
 </form>
 <button mat-raised-button color="primary"(click)="onSubmit()" style="margin-left: 48%;">Submit</button>

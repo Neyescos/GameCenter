@@ -14,12 +14,16 @@ import{MatSelectModule} from '@angular/material/select';
 import{MatButtonModule} from '@angular/material/button';
 import{MatChipsModule} from '@angular/material/chips';
 import { from } from 'rxjs';
+import { UserListComponent } from './Components/user-list/user-list.component';
+import { UserComponent } from './Components/user/user.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    UserListComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

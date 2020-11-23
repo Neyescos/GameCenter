@@ -41,8 +41,8 @@ export class AuthController implements Controller{
                 
                     let res =await authService.post(obj).then(()=>{console.log(authService.getUser()); result =authService.getUser();});
                         
-                    if(result ==undefined|| result==null||result=='invalid values'){
-                        response.end('Invalid values');
+                    if(result ==undefined|| result==null||result=='Invalid values'){
+                        response.end(JSON.stringify({token:'Invalid values'}));
                         
                     }
                     else{

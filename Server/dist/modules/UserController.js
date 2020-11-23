@@ -32,9 +32,9 @@ var UserController = /** @class */ (function () {
     //userservice.get();
     UserController.prototype.get = function (request, response) {
         try {
-            var info = userservice.get();
-            console.log(info);
-            response.end(info);
+            var users = userservice.get();
+            console.log(users);
+            response.end(users);
         }
         catch (err) {
             console.log('something is gone wrong');

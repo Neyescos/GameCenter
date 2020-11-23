@@ -79,8 +79,8 @@ var AuthController = /** @class */ (function () {
                             return [4 /*yield*/, authService.post(obj).then(function () { console.log(authService.getUser()); result_1 = authService.getUser(); })];
                         case 1:
                             res = _a.sent();
-                            if (result_1 == undefined || result_1 == null || result_1 == 'invalid values') {
-                                response.end('Invalid values');
+                            if (result_1 == undefined || result_1 == null || result_1 == 'Invalid values') {
+                                response.end(JSON.stringify({ token: 'Invalid values' }));
                             }
                             else {
                                 console.log(result_1 + ' ---- RESULT');

@@ -40,9 +40,9 @@ export class UserController implements Controller
     get(request:IncomingMessage,response:ServerResponse):void{
         try{
 
-            let info = userservice.get();
-            console.log(info);
-            response.end(info);       
+            let users = userservice.get();
+            console.log(users);
+            response.end(users);       
         }catch(err){
             console.log('something is gone wrong');
             

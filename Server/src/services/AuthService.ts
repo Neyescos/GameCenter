@@ -45,11 +45,11 @@ export class AuthService {
                 let selectedUserQuery = `SELECT * FROM [GameCenter].[dbo].[Users] where User_Name='${object.User_Name.toString()}' and User_Password='${object.User_Password.toString()}'`;
                 
                     let qr = sql.query(connectionString,selectedUserQuery,(err: any,rows: any )=>{
-                        if(rows[0]==undefined||rows==null){
+                        if(rows==null||rows[0]==undefined){
                             console.log(JSON.stringify(rows[0]));
                             selectedUser = 'Invalid values';
                         }
-                        if(rows!=null&& rows!=undefined){
+                        if(rows!=null&& rows[0]!=undefined){
                             console.log(rows[0]);
                             
                             result +=JSON.stringify(rows[0]);

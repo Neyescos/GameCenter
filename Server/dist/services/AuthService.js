@@ -87,11 +87,11 @@ var AuthService = /** @class */ (function () {
                 var jobj;
                 var selectedUserQuery = "SELECT * FROM [GameCenter].[dbo].[Users] where User_Name='" + object.User_Name.toString() + "' and User_Password='" + object.User_Password.toString() + "'";
                 var qr = sql.query(connectionString, selectedUserQuery, function (err, rows) {
-                    if (rows[0] == undefined || rows == null) {
+                    if (rows == null || rows[0] == undefined) {
                         console.log(JSON.stringify(rows[0]));
                         selectedUser = 'Invalid values';
                     }
-                    if (rows != null && rows != undefined) {
+                    if (rows != null && rows[0] != undefined) {
                         console.log(rows[0]);
                         result += JSON.stringify(rows[0]);
                         obj = JSON.parse(result); //[ { UserId: 2, User_Password: '12345678', User_Name: 'Юра' } ]

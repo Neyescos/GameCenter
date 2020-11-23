@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import {HttpClient} from '@angular/common/http'
-import{User} from './user'
+import{User} from './Components/user'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
