@@ -12,6 +12,8 @@ import cors from "cors";
 let modules = new Map<string, IModule>();
 import express from "express";
 import path from "path";
+import { CustomerController } from "./modules/CustomerController";
+import { PlayingSpaceController } from "./modules/PlayingSpaceController";
 const corscon = cors();
 const app = express();
 const port = 3000; // default port to listen
@@ -35,6 +37,7 @@ app.use(function(req, res, next) {
 
 app.use(cors(corsOptions));
 // define a route handler for the default home page
+/*
 app.get( "/", ( req, res ) => {
     
     
@@ -70,13 +73,16 @@ app.listen( port, () => {
     console.log( `server started at http://localhost:${ port }` );
 } );
 
+*/
 
-
-/*http.createServer(async function (request:IncomingMessage, response:ServerResponse) {
+http.createServer(async function (request:IncomingMessage, response:ServerResponse) {
     modules.set("/users",new UserController);
-modules.set("/",new UserController);
-modules.set("/login",new AuthController);
-modules.set("/devices",new DeviceController);
+    modules.set("/",new UserController);
+    modules.set("/login",new AuthController);
+    modules.set("/devices",new DeviceController);
+    modules.set("/customers",new CustomerController);
+    modules.set("/playingspaces",new PlayingSpaceController);
+    // modules.set("/Orders",new OrderController);
     response.setHeader("Access-Control-Allow-Origin", "*");
     response.setHeader("Access-Control-Allow-Methods", "*");
     response.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
@@ -85,4 +91,3 @@ modules.set("/devices",new DeviceController);
     modules.get(request.url?.toString()!)?.Execute(request,response);
     
 }).listen(3000);
-*/
