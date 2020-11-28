@@ -10,7 +10,7 @@ export class UserListService {
 
   constructor(private http:HttpClient) { }
   getUsers():Observable<UserComponent[]>{
-    let token = sessionStorage["authorization"].toString();
+    let token = localStorage["authorization"].toString();
     let options = {headers:new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('authorization',token)};
     console.log('получаю юзеров');
     let result:Observable<UserComponent[]>;
