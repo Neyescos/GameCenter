@@ -14,7 +14,7 @@ import express from "express";
 import path from "path";
 import { CustomerController } from "./modules/CustomerController";
 import { PlayingSpaceController } from "./modules/PlayingSpaceController";
-const corscon = cors();
+
 const app = express();
 const port = 3000; // default port to listen
 modules.set("/users",new UserController);
@@ -29,11 +29,11 @@ var corsOptions = {
 }
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "GET, PATCH, PUT, POST, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, authorization"); //if problem with headers and cors
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH,OPTIONS");
     res.header('Content-Type','application/json');
     next(); 
-  });
+});
 
 app.use(cors(corsOptions));
 // define a route handler for the default home page
@@ -85,7 +85,7 @@ http.createServer(async function (request:IncomingMessage, response:ServerRespon
     // modules.set("/Orders",new OrderController);
     response.setHeader("Access-Control-Allow-Origin", "*");
     response.setHeader("Access-Control-Allow-Methods", "*");
-    response.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+    response.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept,authorization');
     
       
     modules.get(request.url?.toString()!)?.Execute(request,response);

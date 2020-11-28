@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { UserListService } from 'src/app/user-list.service';
 import { UserComponent } from '../user/user.component';
 
@@ -10,7 +10,7 @@ import { UserComponent } from '../user/user.component';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  users! :Observable<UserComponent>;
+  users :any[] =[];
   constructor(private service :UserListService) { }
 
   ngOnInit(): void {
@@ -19,7 +19,10 @@ export class UserListComponent implements OnInit {
       let myToken;
       this.service.getUsers().subscribe(
         result =>{
-          result.user
+          result.forEach(user => {
+            this.users.push(user);
+          });
+          
         }
 
           

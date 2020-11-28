@@ -36,45 +36,44 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserController = void 0;
-var UserService_1 = require("../services/UserService");
-var verifytoken_1 = require("..//verifytoken");
+exports.PlayingSpaceController = void 0;
+var PlayingSpacesService_1 = require("../services/PlayingSpacesService");
+var verifytoken_1 = require("../verifytoken");
 var parse = require('querystring').parse;
-var userservice = new UserService_1.UserService;
-var UserController = /** @class */ (function () {
-    function UserController() {
+var PlayingSpaceservice = new PlayingSpacesService_1.PlayingSpacesService;
+var PlayingSpaceController = /** @class */ (function () {
+    function PlayingSpaceController() {
     }
-    UserController.prototype.Execute = function (request, response) {
+    PlayingSpaceController.prototype.Execute = function (request, response) {
         var querystring = require('querystring');
         var ver = new verifytoken_1.Verify;
-        if (ver.verify(request, response) != false) {
-            var req = request.method;
-            switch (req) {
-                case 'GET':
-                    this.get(request, response);
-                    break;
-                case 'POST':
-                    this.post(request, response);
-                    break;
-                case 'PUT':
-                    this.put(request, response);
-                    break;
-                case 'DELETE':
-                    this.delete(request, response);
-            }
+        ver.verify(request, response);
+        var req = request.method;
+        switch (req) {
+            case 'GET':
+                this.get(request, response);
+                break;
+            case 'POST':
+                this.post(request, response);
+                break;
+            case 'PUT':
+                this.put(request, response);
+                break;
+            case 'DELETE':
+                this.delete(request, response);
         }
     };
     //
     //sql select service
-    //userservice.get();
-    UserController.prototype.get = function (request, response) {
+    //PlayingSpaceservice.get();
+    PlayingSpaceController.prototype.get = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
             var res_1, info, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, userservice.get().then(function () { res_1 = userservice.getRes(); })];
+                        return [4 /*yield*/, PlayingSpaceservice.get().then(function () { res_1 = PlayingSpaceservice.getRes(); })];
                     case 1:
                         info = _a.sent();
                         //console.log(res +'---- INFO');
@@ -93,8 +92,8 @@ var UserController = /** @class */ (function () {
     };
     //
     //sql insert service
-    //userservice.post(obj);
-    UserController.prototype.post = function (request, response) {
+    //PlayingSpaceservice.post(obj);
+    PlayingSpaceController.prototype.post = function (request, response) {
         try {
             var data_1 = '';
             request.on('data', function (chunk) {
@@ -103,7 +102,7 @@ var UserController = /** @class */ (function () {
             request.on('end', function () {
                 var obj = parse(data_1);
                 console.log(obj);
-                userservice.post(obj);
+                PlayingSpaceservice.post(obj);
                 response.end('Ok');
             });
         }
@@ -114,8 +113,8 @@ var UserController = /** @class */ (function () {
     };
     //
     //sql put service
-    //userservice.put(obj);
-    UserController.prototype.put = function (request, response) {
+    //PlayingSpaceservice.put(obj);
+    PlayingSpaceController.prototype.put = function (request, response) {
         try {
             var data_2 = '';
             request.on('data', function (chunk) {
@@ -124,7 +123,7 @@ var UserController = /** @class */ (function () {
             request.on('end', function () {
                 var obj = parse(data_2);
                 console.log(obj);
-                userservice.put(obj);
+                PlayingSpaceservice.put(obj);
                 response.end('Ok');
             });
         }
@@ -134,8 +133,8 @@ var UserController = /** @class */ (function () {
     };
     //
     //sql delete service
-    //userservice.delete(obj);
-    UserController.prototype.delete = function (request, response) {
+    //PlayingSpaceservice.delete(obj);
+    PlayingSpaceController.prototype.delete = function (request, response) {
         try {
             var data_3 = '';
             request.on('data', function (chunk) {
@@ -144,7 +143,7 @@ var UserController = /** @class */ (function () {
             request.on('end', function () {
                 var obj = parse(data_3);
                 console.log(obj);
-                userservice.delete(obj);
+                PlayingSpaceservice.delete(obj);
                 response.end('Ok');
             });
         }
@@ -152,6 +151,6 @@ var UserController = /** @class */ (function () {
             console.log(err);
         }
     };
-    return UserController;
+    return PlayingSpaceController;
 }());
-exports.UserController = UserController;
+exports.PlayingSpaceController = PlayingSpaceController;

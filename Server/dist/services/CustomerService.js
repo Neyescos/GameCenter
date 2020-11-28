@@ -36,80 +36,71 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthService = void 0;
+exports.CustomerService = void 0;
 var sql = require("msnodesqlv8");
 var connectionString = "server=.;Database=GameCenter;Trusted_Connection=Yes;Driver={SQL Server Native Client 11.0}";
-var query = "SELECT * FROM [GameCenter].[dbo].[Users]";
-var selectedUser;
-var parse = require('querystring').parse;
-var object;
-var AuthService = /** @class */ (function () {
-    function AuthService() {
+var query = "SELECT * FROM [GameCenter].[dbo].[Customers]";
+var res;
+var CustomerService = /** @class */ (function () {
+    function CustomerService() {
     }
-    AuthService.prototype.post = function (obj) {
+    CustomerService.prototype.get = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
                 return [2 /*return*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-                        var err_1;
                         return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0:
-                                    _a.trys.push([0, 2, , 3]);
-                                    object = obj;
-                                    return [4 /*yield*/, this.dataPuller()];
-                                case 1:
-                                    _a.sent();
-                                    setTimeout(function () {
-                                        console.log("я вернул значение " + selectedUser);
-                                        resolve(selectedUser);
-                                    }, 250);
-                                    return [3 /*break*/, 3];
-                                case 2:
-                                    err_1 = _a.sent();
-                                    console.log(err_1);
-                                    return [2 /*return*/, "login is broken"];
-                                case 3: return [2 /*return*/];
+                            try {
+                                sql.query(connectionString, query, function (err, rows) {
+                                    if (rows != null) {
+                                        //console.log(JSON.stringify(rows));
+                                        res = JSON.stringify(rows);
+                                    }
+                                });
+                                setTimeout(function () {
+                                    resolve(res);
+                                }, 100);
                             }
+                            catch (err) {
+                                console.log(err);
+                                return [2 /*return*/, "service get is broken "];
+                            }
+                            return [2 /*return*/];
                         });
                     }); })];
             });
         });
     };
-    AuthService.prototype.getUser = function () {
-        return selectedUser;
+    CustomerService.prototype.getRes = function () {
+        return res;
     };
-    AuthService.prototype.dataPuller = function () {
+    CustomerService.prototype.post = function (obj) {
         try {
-            return new Promise(function (resolve, reject) {
-                var result = "";
-                var obj;
-                var jobj;
-                var selectedUserQuery = "SELECT * FROM [GameCenter].[dbo].[Users] where User_Name='" + object.User_Name.toString() + "' and User_Password='" + object.User_Password.toString() + "'";
-                var qr = sql.query(connectionString, selectedUserQuery, function (err, rows) {
-                    if (rows == null || rows[0] == undefined) {
-                        console.log(JSON.stringify(rows[0]));
-                        selectedUser = 'Invalid values';
-                    }
-                    if (rows != null && rows[0] != undefined) {
-                        console.log(rows[0]);
-                        result += JSON.stringify(rows[0]);
-                        obj = JSON.parse(result); //[ { UserId: 2, User_Password: '12345678', User_Name: 'Юра' } ]
-                        //console.log(JSON.stringify(obj));//[{"UserId":2,"User_Password":"12345678","User_Name":"Юра"}]
-                        console.log(obj.UserId);
-                        console.log(JSON.stringify(obj) + " -- OBJECT");
-                        console.log("сначала тут");
-                        selectedUser = obj;
-                    }
-                });
-                resolve(result);
-            });
+            var postquery = "insert into Customers values('" + obj.Customer_Name.toString() + "','" + obj.Customer_Phone.toString() + "')";
+            console.log(postquery);
+            sql.query(connectionString, postquery);
         }
         catch (err) {
             console.log(err);
-            selectedUser = null;
+            console.log("service post error");
         }
     };
-    return AuthService;
+    CustomerService.prototype.put = function (obj) {
+        try {
+            var putquery = "update Customers set Customer_Name='" + obj.Customer_Name + "'where CustomerId=" + obj.CustomerId;
+            console.log(putquery);
+            sql.query(connectionString, putquery);
+        }
+        catch (err) {
+            console.log(err);
+            console.log("service put error");
+        }
+    };
+    CustomerService.prototype.delete = function (obj) {
+        var deletequery = "delete Customers where CustomerId=" + obj.CustomerId;
+        console.log(deletequery);
+        sql.query(connectionString, deletequery);
+    };
+    return CustomerService;
 }());
-exports.AuthService = AuthService;
+exports.CustomerService = CustomerService;

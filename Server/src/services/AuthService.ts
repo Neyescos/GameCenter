@@ -20,7 +20,7 @@ export class AuthService {
                setTimeout(()=>{
                     console.log("я вернул значение "+selectedUser);
                     resolve(selectedUser);
-                },200);
+                },250);
                 
                 
             }catch(err)

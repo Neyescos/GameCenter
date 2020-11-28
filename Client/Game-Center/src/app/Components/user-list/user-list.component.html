@@ -1,1 +1,14 @@
-<p>user-list works!</p>
+<h2 style="margin-left: 52%;">Users</h2>
+<mat-list role="list" style="margin-left: 47%;margin-right: 40%;">
+  <mat-list-item role="listitem" *ngFor="let user of users" >
+    <mat-divider></mat-divider>
+        Name:{{user.User_Name}}
+        <br>
+        Id:{{user.UserId}}
+  </mat-list-item>
+</mat-list>
+<!-- <ul class="users">
+  <li *ngFor="let user of users">
+    <span class="badge">{{user.User_Name}}</span> 
+  </li>
+</ul> -->

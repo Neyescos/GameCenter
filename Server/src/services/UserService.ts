@@ -6,21 +6,27 @@ const connectionString = "server=.;Database=GameCenter;Trusted_Connection=Yes;Dr
 const query = "SELECT * FROM [GameCenter].[dbo].[Users]";
 let res:string;
 export class UserService implements Service{
-    get():string{
-        try{
-          
-            sql.query(connectionString, query, (err, rows) => {
-                if(rows!= null){
-                    //console.log(JSON.stringify(rows));
-                    res =JSON.stringify(rows);
-                } 
-            });
-           return res;
-        }catch(err)
-        {
-            console.log(err);
-            return "service get is broken ";
-        }
+    async get():Promise<any> {
+        return new Promise(async (resolve,reject)=>{
+            try{
+                sql.query(connectionString, query, (err, rows) => {
+                    if(rows!= null){
+                        //console.log(JSON.stringify(rows));
+                        res =JSON.stringify(rows);
+                    } 
+                });
+                setTimeout(()=>{
+                    resolve(res);
+                },100);
+            }catch(err)
+            {
+                console.log(err);
+                return "service get is broken ";
+            }
+        })
+    }
+    getRes():string{
+        return res;
     }
     post(obj:any):void{
         try{

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       this.service.login(this.myForm.get('username')?.value,this.myForm.get('password')?.value).subscribe(
         result =>{
           if(result.token!='Invalid values')
-          sessionStorage.setItem('authorization',result.token);
+          localStorage.setItem('authorization',result.token);
           else{
             correct=false;
           }

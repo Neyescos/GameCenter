@@ -16,37 +16,49 @@ let userservice = new UserService;
 export class UserController implements Controller
 {
     Execute(request:IncomingMessage,response:ServerResponse):void {
-        const querystring = require('querystring')
-        let ver = new Verify;
-        ver.verify(request,response);
-        var req = request.method;
-        switch (req){
-            case 'GET':
-               this.get(request,response);
-            break;
-            case 'POST':
-                this.post(request,response);
-                break;
-            case 'PUT':
-               this.put(request,response);
-                break;
-            case 'DELETE':
-                this.delete(request,response);
+            const querystring = require('querystring');
+
+            let ver = new Verify;
+            if(ver.verify(request,response)!=false)
+            {
+                var req = request.method;
+                switch (req){
+                    case 'GET':
+                       this.get(request,response);
+                    break;
+                    case 'POST':
+                        this.post(request,response);
+                        break;
+                    case 'PUT':
+                       this.put(request,response);
+                        break;
+                    case 'DELETE':
+                        this.delete(request,response);
+                
+
+            }
+
         }
     }
     //
     //sql select service
     //userservice.get();
-    get(request:IncomingMessage,response:ServerResponse):void{
+    async get(request:IncomingMessage,response:ServerResponse):Promise<any>{
         try{
+            let res:string;
+            
+            let info = await userservice.get().then(()=>{res = userservice.getRes()});
+            //console.log(res +'---- INFO');
+            setTimeout(() => {
+                
+                response.end(res);
+            }, 10);
 
-            let users = userservice.get();
-            console.log(users);
-            response.end(users);       
+            
         }catch(err){
             console.log('something is gone wrong');
             
-        }
+        }       
     }
     //
     //sql insert service

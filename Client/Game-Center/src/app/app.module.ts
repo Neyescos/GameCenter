@@ -16,8 +16,8 @@ import{MatChipsModule} from '@angular/material/chips';
 import { from } from 'rxjs';
 import { UserListComponent } from './Components/user-list/user-list.component';
 import { UserComponent } from './Components/user/user.component';
-
-
+import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +34,9 @@ import { UserComponent } from './Components/user/user.component';
     MatButtonModule,
     MatSelectModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatListModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
