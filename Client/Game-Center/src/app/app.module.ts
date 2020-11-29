@@ -18,6 +18,7 @@ import { UserListComponent } from './Components/user-list/user-list.component';
 import { UserComponent } from './Components/user/user.component';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import {MatCardModule} from '@angular/material/card';
     MatInputModule,
     ReactiveFormsModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

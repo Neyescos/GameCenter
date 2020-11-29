@@ -3,6 +3,7 @@ import { from } from 'rxjs';
 import { AuthorizationServiceService } from 'src/app/authorization-service.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
 import { HttpHeaders } from '@angular/common/http';
+import{Router} from '@angular/router'
 let correct=true;
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
     "username":new FormControl("",Validators.required),
     "password":new FormControl("",[Validators.required])
   });
-  constructor(private service:AuthorizationServiceService) { }
+  constructor(private service:AuthorizationServiceService,private router:Router) { }
 
   ngOnInit(){
     console.log("Loaded");
@@ -37,9 +38,15 @@ export class LoginComponent implements OnInit {
           }
         console.log(result.token);}
       );
+      if(correct==true){
+        this.onCorrect();
+        correct=false;
+      }
     }catch{
       console.log('ошибка логина');
     }
   }
- 
+  onCorrect(){
+    this.router.navigateByUrl('/users');
+  }
 }

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { UserListService } from 'src/app/user-list.service';
 import { UserComponent } from '../user/user.component';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -11,7 +11,7 @@ import { UserComponent } from '../user/user.component';
 })
 export class UserListComponent implements OnInit {
   users :any[] =[];
-  constructor(private service :UserListService) { }
+  constructor(private service :UserListService,private router:Router) { }
 
   ngOnInit(): void {
     console.log("loaded");
@@ -30,7 +30,6 @@ export class UserListComponent implements OnInit {
       console.log(err);
       console.log('user-list error');
     }
-    
   }
-
+  
 }
