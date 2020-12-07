@@ -31,7 +31,7 @@ export class DeviceService implements Service{
     post(obj: any): void {
         try{
         
-            let postquery = `insert into Devices values('${obj.Device_Name.toString()}','${obj.In_Nice_Condition.toString()}')`;
+            let postquery = `insert into Devices values('${obj.name.toString()}','${obj.In_Nice_Condition.toString()}')`;
             console.log(postquery);
             sql.query(connectionString,postquery);
                 
@@ -44,7 +44,7 @@ export class DeviceService implements Service{
     }
     put(obj: any): void {
         try{
-            let putquery = `update devices set User_Name='${obj.Device_Name}'where DeviceId=${obj.DeviceId}`;
+            let putquery = `update devices set name='${obj.name}'where Id=${obj.Id}`;
             console.log(putquery);
             sql.query(connectionString,putquery);
         }catch(err)
@@ -54,7 +54,7 @@ export class DeviceService implements Service{
         }
     }
     delete(obj: any): void {
-        let deletequery = `delete Devices where DeviceId=${obj.DeviceId}`;
+        let deletequery = `delete Devices where Id=${obj.Id}`;
         console.log(deletequery);
         sql.query(connectionString,deletequery);
     }

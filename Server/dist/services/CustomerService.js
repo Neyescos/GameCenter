@@ -76,7 +76,7 @@ var CustomerService = /** @class */ (function () {
     };
     CustomerService.prototype.post = function (obj) {
         try {
-            var postquery = "insert into Customers values('" + obj.Customer_Name.toString() + "','" + obj.Customer_Phone.toString() + "')";
+            var postquery = "insert into Customers values('" + obj.name + "','" + obj.phone + "')";
             console.log(postquery);
             sql.query(connectionString, postquery);
         }
@@ -87,7 +87,7 @@ var CustomerService = /** @class */ (function () {
     };
     CustomerService.prototype.put = function (obj) {
         try {
-            var putquery = "update Customers set Customer_Name='" + obj.Customer_Name + "'where CustomerId=" + obj.CustomerId;
+            var putquery = "update Customers set name='" + obj.name + "'where Id=" + obj.Id;
             console.log(putquery);
             sql.query(connectionString, putquery);
         }
@@ -97,7 +97,7 @@ var CustomerService = /** @class */ (function () {
         }
     };
     CustomerService.prototype.delete = function (obj) {
-        var deletequery = "delete Customers where CustomerId=" + obj.CustomerId;
+        var deletequery = "delete Customers where Id=" + obj.Id;
         console.log(deletequery);
         sql.query(connectionString, deletequery);
     };

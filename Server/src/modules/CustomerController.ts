@@ -60,11 +60,13 @@ export class CustomerController implements Controller{
                 let data = '';
                 request.on('data', chunk => {
                     data += chunk.toString();
+                    console.log(data);
                 });
                 request.on('end',()=>{
                     
                     let obj = parse(data);
                     console.log(obj);
+                    console.log(obj.name+"----name");
                     Customerservice.post(obj);      
                     response.end('Ok');
                 }

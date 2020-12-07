@@ -19,12 +19,19 @@ import { UserComponent } from './Components/user/user.component';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
+import { ClientComponent } from './Components/client/client.component';
+import { ClientListComponent } from './Components/client-list/client-list.component';
+import { AddClientComponent } from './Components/add-client/add-client.component';
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserListComponent,
-    UserComponent
+    UserComponent,
+    ClientListComponent,
+    AddClientComponent,
+    ClientComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +45,8 @@ import {MatIconModule} from '@angular/material/icon';
     ReactiveFormsModule,
     MatListModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

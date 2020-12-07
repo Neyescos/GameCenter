@@ -45,7 +45,7 @@ export class PlayingSpacesService implements Service{
     }
     put(obj: any): void {
         try{
-            let putquery = `update Customers set IsEmpty='${obj.IsEmpty}'where PlayingSpaceId=${obj.PlayingSpaceId}`;
+            let putquery = `update Customers set IsEmpty='${obj.IsEmpty}'where Id=${obj.Id}`;
             console.log(putquery);
             sql.query(connectionString,putquery);
         }catch(err)
@@ -55,7 +55,7 @@ export class PlayingSpacesService implements Service{
         }
     }
     delete(obj: any): void {
-        let deletequery = `delete PlayingSpaces where PlayingSpaceId=${obj.PlayingSpaceId}`;
+        let deletequery = `delete PlayingSpaces where Id=${obj.Id}`;
         console.log(deletequery);
         sql.query(connectionString,deletequery);
     }

@@ -98,10 +98,12 @@ var CustomerController = /** @class */ (function () {
             var data_1 = '';
             request.on('data', function (chunk) {
                 data_1 += chunk.toString();
+                console.log(data_1);
             });
             request.on('end', function () {
                 var obj = parse(data_1);
                 console.log(obj);
+                console.log(obj.name + "----name");
                 Customerservice.post(obj);
                 response.end('Ok');
             });

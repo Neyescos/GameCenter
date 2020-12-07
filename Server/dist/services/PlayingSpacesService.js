@@ -87,7 +87,7 @@ var PlayingSpacesService = /** @class */ (function () {
     };
     PlayingSpacesService.prototype.put = function (obj) {
         try {
-            var putquery = "update Customers set IsEmpty='" + obj.IsEmpty + "'where PlayingSpaceId=" + obj.PlayingSpaceId;
+            var putquery = "update Customers set IsEmpty='" + obj.IsEmpty + "'where Id=" + obj.Id;
             console.log(putquery);
             sql.query(connectionString, putquery);
         }
@@ -97,7 +97,7 @@ var PlayingSpacesService = /** @class */ (function () {
         }
     };
     PlayingSpacesService.prototype.delete = function (obj) {
-        var deletequery = "delete PlayingSpaces where PlayingSpaceId=" + obj.PlayingSpaceId;
+        var deletequery = "delete PlayingSpaces where Id=" + obj.Id;
         console.log(deletequery);
         sql.query(connectionString, deletequery);
     };

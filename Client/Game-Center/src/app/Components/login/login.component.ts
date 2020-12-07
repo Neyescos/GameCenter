@@ -17,9 +17,13 @@ export class LoginComponent implements OnInit {
     "password":new FormControl("",[Validators.required])
   });
   constructor(private service:AuthorizationServiceService,private router:Router) { }
-
+  get username(){ return this.myForm.get('usernamename');}
+  get password(){ return this.myForm.get('password');}
   ngOnInit(){
+    sessionStorage.clear();
+    localStorage.clear();
     console.log("Loaded");
+    correct = true;
   }
   getCorrect():any{
     return correct;
@@ -28,7 +32,6 @@ export class LoginComponent implements OnInit {
     try{
       console.log(this.myForm.get('username')?.value);
       //const myHeaders = new HttpHeaders().set('Authorization', 'my-auth-token');
-      let myToken;
       this.service.login(this.myForm.get('username')?.value,this.myForm.get('password')?.value).subscribe(
         result =>{
           if(result.token!='Invalid values')
@@ -38,15 +41,16 @@ export class LoginComponent implements OnInit {
           }
         console.log(result.token);}
       );
-      if(correct==true){
-        this.onCorrect();
-        correct=false;
+      setTimeout(()=>{
+        console.log('перевел');
+        if(correct==true){
+          this.router.navigateByUrl('/users');
+          correct=false;
       }
+      },300);
     }catch{
       console.log('ошибка логина');
     }
   }
-  onCorrect(){
-    this.router.navigateByUrl('/users');
-  }
+ 
 }

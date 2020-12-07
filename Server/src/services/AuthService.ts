@@ -42,7 +42,7 @@ export class AuthService {
                 let result ="";
                 let obj:any;
                 let jobj:any;
-                let selectedUserQuery = `SELECT * FROM [GameCenter].[dbo].[Users] where User_Name='${object.User_Name.toString()}' and User_Password='${object.User_Password.toString()}'`;
+                let selectedUserQuery = `SELECT * FROM [GameCenter].[dbo].[Users] where name='${object.name.toString()}' and password='${object.password.toString()}'`;
                 
                     let qr = sql.query(connectionString,selectedUserQuery,(err: any,rows: any )=>{
                         if(rows==null||rows[0]==undefined){

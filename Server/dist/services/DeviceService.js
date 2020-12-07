@@ -76,7 +76,7 @@ var DeviceService = /** @class */ (function () {
     };
     DeviceService.prototype.post = function (obj) {
         try {
-            var postquery = "insert into Devices values('" + obj.Device_Name.toString() + "','" + obj.In_Nice_Condition.toString() + "')";
+            var postquery = "insert into Devices values('" + obj.name.toString() + "','" + obj.In_Nice_Condition.toString() + "')";
             console.log(postquery);
             sql.query(connectionString, postquery);
         }
@@ -87,7 +87,7 @@ var DeviceService = /** @class */ (function () {
     };
     DeviceService.prototype.put = function (obj) {
         try {
-            var putquery = "update devices set User_Name='" + obj.Device_Name + "'where DeviceId=" + obj.DeviceId;
+            var putquery = "update devices set name='" + obj.name + "'where Id=" + obj.Id;
             console.log(putquery);
             sql.query(connectionString, putquery);
         }
@@ -97,7 +97,7 @@ var DeviceService = /** @class */ (function () {
         }
     };
     DeviceService.prototype.delete = function (obj) {
-        var deletequery = "delete Devices where DeviceId=" + obj.DeviceId;
+        var deletequery = "delete Devices where Id=" + obj.Id;
         console.log(deletequery);
         sql.query(connectionString, deletequery);
     };

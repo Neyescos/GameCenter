@@ -76,7 +76,7 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.post = function (obj) {
         try {
-            var postquery = "insert into users values('" + obj.User_Name.toString() + "','" + obj.User_Password.toString() + "')";
+            var postquery = "insert into users values('" + obj.name.toString() + "','" + obj.password.toString() + "')";
             console.log(postquery);
             sql.query(connectionString, postquery);
         }
@@ -87,7 +87,7 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.put = function (obj) {
         try {
-            var putquery = "update users set User_Name='" + obj.User_Name + "'where UserId=" + obj.UserId;
+            var putquery = "update users set name='" + obj.name + "'where Id=" + obj.Id;
             console.log(putquery);
             sql.query(connectionString, putquery);
         }
@@ -97,7 +97,7 @@ var UserService = /** @class */ (function () {
         }
     };
     UserService.prototype.delete = function (obj) {
-        var deletequery = "delete Users where UserId=" + obj.UserId;
+        var deletequery = "delete Users where Id=" + obj.Id;
         console.log(deletequery);
         sql.query(connectionString, deletequery);
     };

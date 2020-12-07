@@ -32,7 +32,7 @@ export class OrderService implements Service{
     post(obj: any): void {
         try{
         
-            let postquery = `insert into Orders values('${obj.Order_Date}','${obj.Current_CustomerId.toString()}','${obj.Ordered_DeviceId}','${obj.AdminId}')`;
+            let postquery = `insert into Orders values('${obj.date}','${obj.Current_CustomerId.toString()}','${obj.Ordered_DeviceId}','${obj.AdminId}')`;
             console.log(postquery);
             sql.query(connectionString,postquery);
                 
@@ -45,7 +45,7 @@ export class OrderService implements Service{
     }
     put(obj: any): void {
         try{
-            let putquery = `update Orders set Order_Date='${obj.Order_Date}'where OrderId=${obj.OrderId}`;
+            let putquery = `update Orders set date='${obj.date}'where Id=${obj.Id}`;
             console.log(putquery);
             sql.query(connectionString,putquery);
         }catch(err)
@@ -55,7 +55,7 @@ export class OrderService implements Service{
         }
     }
     delete(obj: any): void {
-        let deletequery = `delete Orders where OrderId=${obj.OrderId}`;
+        let deletequery = `delete Orders where Id=${obj.Id}`;
         console.log(deletequery);
         sql.query(connectionString,deletequery);
     }

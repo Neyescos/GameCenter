@@ -13,65 +13,65 @@ GO
 GO
 --THIS TABLE IS FOR ADMINISTRATOR authentication
 CREATE TABLE Users(
-    UserId int IDENTITY(1,1) not null PRIMARY key,
-    User_Password varchar(10) not null,
-    User_Name VARCHAR(20) not NULL
+    Id int IDENTITY(1,1) not null PRIMARY key,
+    password varchar(10) not null,
+    name VARCHAR(20) not NULL
 );
 
 GO
 go
 --THIS TABLE IS FOR authentication OF CUSTOMERS
 CREATE table Customers(
-    CustomerId int IDENTITY(1,1) not null Primary KEY,
-    Customer_Name varchar(20) not null,
-    Customer_Phone varchar(20)
+    Id int IDENTITY(1,1) not null Primary KEY,
+    name varchar(20) not null,
+    phone varchar(20)
 );
 go
 GO
 CREATE TABLE Devices(
-    DeviceId int identity(1,1) not null PRIMARY KEY,
-    Device_Name varchar(40) not null,
+    Id int identity(1,1) not null PRIMARY KEY,
+    name varchar(40) not null,
     In_Nice_Condition bit not NULL
 );
 GO
 GO
 CREATE TABLE PlayingSpaces(
-    PlayingSpaceId int IDENTITY(1,1) not null PRIMARY KEY,
+    Id int IDENTITY(1,1) not null PRIMARY KEY,
     IsEmpty BIT not null,
     Gaming_DeviceId int not null,
-    CONSTRAINT DeviceFK FOREIGN KEY (Gaming_DeviceId) REFERENCES Devices(DeviceId)
+    CONSTRAINT DeviceFK FOREIGN KEY (Gaming_DeviceId) REFERENCES Devices(Id)
 
 );
 go
 GO
 CREATE table Orders(
-    OrderId int identity(1,1) not null PRIMARY KEY,
-    Order_Date DATETIME not null,
+    Id int identity(1,1) not null PRIMARY KEY,
+    date DATETIME not null,
     Current_CustomerId int not null,
     Ordered_DeviceId int not null,
     AdminId int not null,
-    CONSTRAINT CustomerFK FOREIGN KEY (Current_CustomerId) REFERENCES Customers(CustomerId),
-    Constraint Ordered_DeviceFK FOREIGN KEY (Ordered_DeviceId) REFERENCES Devices(DeviceId),
-    CONSTRAINT UserFK FOREIGN KEY (AdminId) REFERENCES Users(UserId)
+    CONSTRAINT CustomerFK FOREIGN KEY (Current_CustomerId) REFERENCES Customers(Id),
+    Constraint Ordered_DeviceFK FOREIGN KEY (Ordered_DeviceId) REFERENCES Devices(Id),
+    CONSTRAINT UserFK FOREIGN KEY (AdminId) REFERENCES Users(Id)
 );
 go
 
 GO
-insert into Customers(Customer_Name,Customer_Phone) values
-('Юра','+3729000000'),
-('Даник',''),
-('Коля','+37529100000'),
-('Илья',''),
-('Владик','+37529200000');
+insert into Customers(name,phone) values
+('Юра','3729000000'),
+('Даник','37529100002'),
+('Коля','37529100000'),
+('Илья','37529100330'),
+('Владик','37529200000');
 GO
-insert into Users(User_Name,User_Password) values
+insert into Users(name,password) values
  ('Андрей','11111111'),
  ('Юра','12345678'),
  ('Даник','22222222'),
  ('Коля','33333333'),
  ('Влад','44444444');
 GO
-insert into Devices(Device_Name,In_Nice_Condition) values ('Playstation 4 Pro',1),
+insert into Devices(name,In_Nice_Condition) values ('Playstation 4 Pro',1),
 ('Nintendo Switch',1),
 ('Xbox One X',1),
 ('Nintendo Wii',0),
@@ -85,11 +85,12 @@ insert into PlayingSpaces(IsEmpty,Gaming_DeviceId) values
 (0,4),
 (0,5);
 GO
-insert into Orders(Order_Date,Current_CustomerId,Ordered_DeviceId,AdminId) values 
+insert into Orders(date,Current_CustomerId,Ordered_DeviceId,AdminId) values 
 ('10-10-2020 10:30',1,1,1),
 ('10-10-2020 10:35',2,2,1),
 ('10-10-2020 10:40',3,4,1),
 ('10-10-2020 11:00',4,3,1);
 
 SELECT  *
-  FROM [GameCenter].[dbo].[Users] where User_Name='Юра' and User_Password='12345678'
+  FROM [GameCenter].[dbo].[Users] where name='Юра' and password='12345678'
+ 

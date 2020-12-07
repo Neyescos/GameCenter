@@ -31,7 +31,7 @@ export class UserService implements Service{
     post(obj:any):void{
         try{
         
-            let postquery = `insert into users values('${obj.User_Name.toString()}','${obj.User_Password.toString()}')`;
+            let postquery = `insert into users values('${obj.name.toString()}','${obj.password.toString()}')`;
             console.log(postquery);
             sql.query(connectionString,postquery);
                 
@@ -44,7 +44,7 @@ export class UserService implements Service{
     }
     put(obj:any):void{
         try{
-            let putquery = `update users set User_Name='${obj.User_Name}'where UserId=${obj.UserId}`;
+            let putquery = `update users set name='${obj.name}'where Id=${obj.Id}`;
             console.log(putquery);
             sql.query(connectionString,putquery);
         }catch(err)
@@ -54,7 +54,7 @@ export class UserService implements Service{
         }
     }
     delete(obj: any): void {
-        let deletequery = `delete Users where UserId=${obj.UserId}`;
+        let deletequery = `delete Users where Id=${obj.Id}`;
         console.log(deletequery);
         sql.query(connectionString,deletequery);
     }

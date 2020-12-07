@@ -15,6 +15,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("loaded");
+    
     try{
       //const myHeaders = new HttpHeaders().set('Authorization', 'my-auth-token');
       let myToken;
@@ -25,9 +26,10 @@ export class UserListComponent implements OnInit {
           });
           
         }
-      );
+        );
     }catch(err){
       console.log(err);
+      this.router.navigateByUrl('/login');
       console.log('user-list error');
     }
   }

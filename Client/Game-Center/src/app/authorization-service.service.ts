@@ -12,7 +12,7 @@ export class AuthorizationServiceService {
   constructor(private http:HttpClient) { }
   data!: Observable<any>;
   login(username:string,password:string){
-    let body = `User_Name=${username}&User_Password=${password}&grant_type=password`;
+    let body = `name=${username}&password=${password}&grant_type=password`;
     let options = {headers:new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')};
     console.log('вошел');
     let result:Observable<UserModel>;

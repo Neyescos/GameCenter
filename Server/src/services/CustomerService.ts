@@ -31,8 +31,7 @@ export class CustomerService implements Service{
     }
     post(obj: any): void {
         try{
-        
-            let postquery = `insert into Customers values('${obj.Customer_Name.toString()}','${obj.Customer_Phone.toString()}')`;
+            let postquery = `insert into Customers values('${obj.name}','${obj.phone}')`;
             console.log(postquery);
             sql.query(connectionString,postquery);
                 
@@ -45,7 +44,7 @@ export class CustomerService implements Service{
     }
     put(obj: any): void {
         try{
-            let putquery = `update Customers set Customer_Name='${obj.Customer_Name}'where CustomerId=${obj.CustomerId}`;
+            let putquery = `update Customers set name='${obj.name}'where Id=${obj.Id}`;
             console.log(putquery);
             sql.query(connectionString,putquery);
         }catch(err)
@@ -55,7 +54,7 @@ export class CustomerService implements Service{
         }
     }
     delete(obj: any): void {
-        let deletequery = `delete Customers where CustomerId=${obj.CustomerId}`;
+        let deletequery = `delete Customers where Id=${obj.Id}`;
         console.log(deletequery);
         sql.query(connectionString,deletequery);
     }

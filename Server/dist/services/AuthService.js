@@ -85,7 +85,7 @@ var AuthService = /** @class */ (function () {
                 var result = "";
                 var obj;
                 var jobj;
-                var selectedUserQuery = "SELECT * FROM [GameCenter].[dbo].[Users] where User_Name='" + object.User_Name.toString() + "' and User_Password='" + object.User_Password.toString() + "'";
+                var selectedUserQuery = "SELECT * FROM [GameCenter].[dbo].[Users] where name='" + object.name.toString() + "' and password='" + object.password.toString() + "'";
                 var qr = sql.query(connectionString, selectedUserQuery, function (err, rows) {
                     if (rows == null || rows[0] == undefined) {
                         console.log(JSON.stringify(rows[0]));

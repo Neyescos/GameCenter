@@ -76,7 +76,7 @@ var OrderService = /** @class */ (function () {
     };
     OrderService.prototype.post = function (obj) {
         try {
-            var postquery = "insert into Orders values('" + obj.Order_Date + "','" + obj.Current_CustomerId.toString() + "','" + obj.Ordered_DeviceId + "','" + obj.AdminId + "')";
+            var postquery = "insert into Orders values('" + obj.date + "','" + obj.Current_CustomerId.toString() + "','" + obj.Ordered_DeviceId + "','" + obj.AdminId + "')";
             console.log(postquery);
             sql.query(connectionString, postquery);
         }
@@ -87,7 +87,7 @@ var OrderService = /** @class */ (function () {
     };
     OrderService.prototype.put = function (obj) {
         try {
-            var putquery = "update Orders set Order_Date='" + obj.Order_Date + "'where OrderId=" + obj.OrderId;
+            var putquery = "update Orders set date='" + obj.date + "'where Id=" + obj.Id;
             console.log(putquery);
             sql.query(connectionString, putquery);
         }
@@ -97,7 +97,7 @@ var OrderService = /** @class */ (function () {
         }
     };
     OrderService.prototype.delete = function (obj) {
-        var deletequery = "delete Orders where OrderId=" + obj.OrderId;
+        var deletequery = "delete Orders where Id=" + obj.Id;
         console.log(deletequery);
         sql.query(connectionString, deletequery);
     };

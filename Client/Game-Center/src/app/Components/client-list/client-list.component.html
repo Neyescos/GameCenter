@@ -1,0 +1,20 @@
+<a routerLink="/login">
+    <button mat-raised-button color="warn" aria-label="home" style="margin-left:0.4%;" >
+      <mat-icon>home</mat-icon>
+    </button>
+</a>
+<h2 style="margin-left: 52%;">Clients</h2>
+<a routerLink="/addclient">
+  <button mat-raised-button color="primary" style="margin-left: 52%;">Add</button> 
+</a>
+  <mat-list role="list" style="width:100%">
+    <mat-list-item role="listitem" style="padding: 60px; margin-left: 30px;" >
+    <app-client *ngFor="let customer of customers"
+    [client] = "customer"
+    ></app-client>
+    </mat-list-item>
+  </mat-list>
+  
+
+
+  

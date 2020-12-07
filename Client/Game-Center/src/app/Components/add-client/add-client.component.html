@@ -1,0 +1,25 @@
+<h1 style="margin-left:46%;margin-top: 10%;">Add Client</h1>
+<form [formGroup]="myForm"novalidate  style="margin-left:45%;margin-top: 3%;">
+    <br>
+    <mat-form-field>
+        <input matInput placeholder="Customer Name" formControlName="name" required> 
+        <mat-error *ngIf="name==null ||name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            Name is required.
+        </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-hint>Must start with 375</mat-hint>
+        <input matInput placeholder="Customer Phone Number" formControlName="phone" required>
+        <mat-error *ngIf="phone==null ||phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+            Wrong phone number
+        </mat-error>
+        
+    </mat-form-field>
+    <br>
+</form>
+<a routerLink='/clients'>
+    <button mat-raised-button color="primary"(click)="onNewCustomer()" style="margin-left: 48%;" *ngIf="phone!=null&&name!=null&&phone.valid &&name.valid">Submit</button>
+</a>
+
+

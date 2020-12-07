@@ -1,17 +1,19 @@
 <a routerLink="/login">
-  <button mat-fab color="warn" aria-label="home"  >
+  <button mat-raised-button color="warn" aria-label="home"  style="margin-left:0.4%;">
     <mat-icon>home</mat-icon>
   </button> 
 </a>
-<h2 style="margin-left: 52%;">Users</h2>
-<mat-list role="list" style="margin-left: 47%;margin-right: 40%;">
-  <mat-list-item role="listitem" *ngFor="let user of users" >
-    <mat-divider></mat-divider>
-        Name:{{user.User_Name}}
-        <br>
-        Id:{{user.UserId}}
+<a routerLink="/clients">
+  <button mat-raised-button color="warn" aria-label="clients"  style="margin-left:0.4%;">Clients
+  </button> 
+</a>
+<h2 style="margin-left: 52%;">Administraitors of system</h2>
+<mat-list role="list" style="width:100%">
+  <mat-list-item role="listitem" style="padding: 60px; margin-left: 30px;" >
+  <app-user *ngFor="let user of users"
+  [user] = "user"
+  ></app-user>
   </mat-list-item>
-</mat-list>
 <!-- <ul class="users">
   <li *ngFor="let user of users">
     <span class="badge">{{user.User_Name}}</span> 
