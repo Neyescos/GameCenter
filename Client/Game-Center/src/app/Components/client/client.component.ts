@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Client } from '../client';
 
 @Component({
@@ -9,10 +10,11 @@ import { Client } from '../client';
 export class ClientComponent implements OnInit {
 
   @Input() client!:Client;
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
-    console.log(this.client.id);
+    console.log(this.client.Id);
+    this.router.navigateByUrl('/clients');
   }
 
 }

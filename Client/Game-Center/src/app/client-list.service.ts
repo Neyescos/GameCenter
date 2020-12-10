@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Client } from './Components/client';
 import { ClientComponent } from './Components/client/client.component';
 
@@ -29,12 +30,22 @@ export class ClientService {
     
   }
   deleteClient(id:number){
-    let token = localStorage["authorization"].toString();
-    let options = {headers:new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('authorization',token)};
-    
-    this.http.delete('http://localhost:3000/customers',options);
-    // let result:Observable<ClientComponent[]>;
-    // result = this.http.get<ClientComponent[]>('http://localhost:3000/customers',options); 
-    // return result;
+    try{
+      let token = localStorage["authorization"].toString();
+     
+      let options = 
+      {
+        headers:new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('authorization',token),
+        body:{"Id":id}
+      };
+      console.log("удаляю клиента");
+      
+      this.http.delete('http://localhost:3000/customers',options)
+          .subscribe((s)=>{console.log(s)
+        });
+
+    }catch(err){
+      console.log(err);
+    }
   }
 }

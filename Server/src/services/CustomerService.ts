@@ -54,9 +54,13 @@ export class CustomerService implements Service{
         }
     }
     delete(obj: any): void {
-        let deletequery = `delete Customers where Id=${obj.Id}`;
-        console.log(deletequery);
-        sql.query(connectionString,deletequery);
+        try{
+            let deletequery = `delete Customers where Id=${obj.Id}`;
+            console.log(deletequery);
+            sql.query(connectionString,deletequery);
+        }catch(err){
+            console.log(err);
+        }
     }
     
 }

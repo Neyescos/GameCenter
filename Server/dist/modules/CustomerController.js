@@ -60,6 +60,7 @@ var CustomerController = /** @class */ (function () {
                 this.put(request, response);
                 break;
             case 'DELETE':
+                console.log("DELETE method");
                 this.delete(request, response);
         }
     };
@@ -79,7 +80,7 @@ var CustomerController = /** @class */ (function () {
                         //console.log(res +'---- INFO');
                         setTimeout(function () {
                             response.end(res_1);
-                        }, 10);
+                        }, 20);
                         return [3 /*break*/, 3];
                     case 2:
                         err_1 = _a.sent();
@@ -138,12 +139,13 @@ var CustomerController = /** @class */ (function () {
     //Customerservice.delete(obj);
     CustomerController.prototype.delete = function (request, response) {
         try {
+            console.log('delete customer request!!');
             var data_3 = '';
             request.on('data', function (chunk) {
                 data_3 += chunk.toString();
             });
             request.on('end', function () {
-                var obj = parse(data_3);
+                var obj = JSON.parse(data_3);
                 console.log(obj);
                 Customerservice.delete(obj);
                 response.end('Ok');

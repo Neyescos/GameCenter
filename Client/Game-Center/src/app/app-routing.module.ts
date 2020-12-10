@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ClientService } from './client-list.service';
 import { AddClientComponent } from './Components/add-client/add-client.component';
+import { ClientDeleteRequestComponent } from './Components/client-delete-request/client-delete-request.component';
 import { ClientListComponent } from './Components/client-list/client-list.component';
 import { ClientComponent } from './Components/client/client.component';
 import { LoginComponent } from './Components/login/login.component';
@@ -15,7 +15,8 @@ const routes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   {path:'clients',component:ClientListComponent},
   {path:'addclient',component:AddClientComponent},
-  {path:'client',component:ClientComponent}
+  {path:'client',component:ClientComponent},
+  {path:'deleteclient',component:ClientDeleteRequestComponent}
 ];
 
 @NgModule({

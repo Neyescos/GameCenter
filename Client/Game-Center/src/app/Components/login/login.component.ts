@@ -20,14 +20,15 @@ export class LoginComponent implements OnInit {
   get username(){ return this.myForm.get('usernamename');}
   get password(){ return this.myForm.get('password');}
   ngOnInit(){
-    sessionStorage.clear();
-    localStorage.clear();
+    
     console.log("Loaded");
     correct = true;
+    
   }
   getCorrect():any{
     return correct;
   }
+  
   onSubmit(){
     try{
       console.log(this.myForm.get('username')?.value);
@@ -47,7 +48,7 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/users');
           correct=false;
       }
-      },300);
+      },400);
     }catch{
       console.log('ошибка логина');
     }

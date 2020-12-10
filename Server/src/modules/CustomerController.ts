@@ -29,6 +29,7 @@ export class CustomerController implements Controller{
                this.put(request,response);
                 break;
             case 'DELETE':
+                console.log("DELETE method")
                 this.delete(request,response);
         }
     }
@@ -44,7 +45,7 @@ export class CustomerController implements Controller{
             setTimeout(() => {
                 
                 response.end(res);
-            }, 10);
+            }, 20);
 
             
         }catch(err){
@@ -103,12 +104,13 @@ export class CustomerController implements Controller{
     //Customerservice.delete(obj);
     delete(request:IncomingMessage,response:ServerResponse):void{
         try{
+            console.log('delete customer request!!');
             let data = '';
                 request.on('data', chunk => {
                     data += chunk.toString();
                 });
                 request.on('end',()=>{
-                    let obj = parse(data);
+                    let obj = JSON.parse(data);
                     console.log(obj);
                     Customerservice.delete(obj);
                     response.end('Ok');

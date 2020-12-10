@@ -23,6 +23,7 @@ import { ClientComponent } from './Components/client/client.component';
 import { ClientListComponent } from './Components/client-list/client-list.component';
 import { AddClientComponent } from './Components/add-client/add-client.component';
 import {MatTableModule} from '@angular/material/table';
+import { ClientDeleteRequestComponent } from './Components/client-delete-request/client-delete-request.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import {MatTableModule} from '@angular/material/table';
     UserComponent,
     ClientListComponent,
     AddClientComponent,
-    ClientComponent
+    ClientComponent,
+    ClientDeleteRequestComponent
   ],
   imports: [
     BrowserModule,

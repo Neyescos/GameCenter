@@ -1,19 +1,23 @@
 <a routerLink="/login">
-    <button mat-raised-button color="warn" aria-label="home" style="margin-left:0.4%;" >
+    <button mat-raised-button color="warn" aria-label="home" style="top:0;position:sticky;margin-left:0.4%;"(click)='clearStorages()'>
       <mat-icon>home</mat-icon>
     </button>
 </a>
-<h2 style="margin-left: 52%;">Clients</h2>
-<a routerLink="/addclient">
-  <button mat-raised-button color="primary" style="margin-left: 52%;">Add</button> 
-</a>
-  <mat-list role="list" style="width:100%">
-    <mat-list-item role="listitem" style="padding: 60px; margin-left: 30px;" >
-    <app-client *ngFor="let customer of customers"
-    [client] = "customer"
-    ></app-client>
-    </mat-list-item>
-  </mat-list>
+<div style="margin-left: 50%;">
+  <h2 >Clients</h2>
+  <a routerLink="/addclient">
+    <button mat-raised-button color="primary" >Add</button> 
+  </a>
+  
+</div>
+<div style=" display: grid;_repeat(auto-fill, minmax(200px, auto));justify-content: space-evenly;margin-top: 10px;">
+  <app-client *ngFor="let customer of customers"
+  [client] = "customer"
+  ></app-client>
+
+</div>
+    
+ 
   
 
 

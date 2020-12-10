@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/client-list.service';
 import { Client } from '../client';
-import { ClientComponent } from '../client/client.component';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-client-list',
@@ -12,7 +11,10 @@ export class ClientListComponent implements OnInit {
   customers :Client[] =[];
   
   constructor(private service:ClientService,private router:Router) { }
-  
+  clearStorages(){
+    sessionStorage.clear();
+    localStorage.clear();
+  }
   ngOnInit(): void {
     console.log("loaded");
     try{
