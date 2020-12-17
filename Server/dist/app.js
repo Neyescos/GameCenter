@@ -135,7 +135,7 @@ http.createServer(function (request, response) {
             modules.set("/devices", new DeviceController_1.DeviceController);
             modules.set("/customers", new CustomerController_1.CustomerController);
             modules.set("/playingspaces", new PlayingSpaceController_1.PlayingSpaceController);
-            // modules.set("/Orders",new OrderController);
+            //modules.set("/orders",new Controller);
             response.setHeader("Access-Control-Allow-Origin", "*");
             response.setHeader("Access-Control-Allow-Methods", "*");
             response.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept,authorization');

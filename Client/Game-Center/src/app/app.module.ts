@@ -24,6 +24,9 @@ import { ClientListComponent } from './Components/client-list/client-list.compon
 import { AddClientComponent } from './Components/add-client/add-client.component';
 import {MatTableModule} from '@angular/material/table';
 import { ClientDeleteRequestComponent } from './Components/client-delete-request/client-delete-request.component';
+import { DeviceComponent } from './Components/device/device.component';
+import { DeviceListComponent } from './Components/device-list/device-list.component';
+import { AddDeviceComponent } from './Components/add-device/add-device.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +36,10 @@ import { ClientDeleteRequestComponent } from './Components/client-delete-request
     ClientListComponent,
     AddClientComponent,
     ClientComponent,
-    ClientDeleteRequestComponent
+    ClientDeleteRequestComponent,
+    DeviceComponent,
+    DeviceListComponent,
+    AddDeviceComponent
   ],
   imports: [
     BrowserModule,

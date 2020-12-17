@@ -76,7 +76,7 @@ var DeviceService = /** @class */ (function () {
     };
     DeviceService.prototype.post = function (obj) {
         try {
-            var postquery = "insert into Devices values('" + obj.name.toString() + "','" + obj.In_Nice_Condition.toString() + "')";
+            var postquery = "insert into Devices values('" + obj.name.toString() + "'," + obj.In_Nice_Condition + ")";
             console.log(postquery);
             sql.query(connectionString, postquery);
         }

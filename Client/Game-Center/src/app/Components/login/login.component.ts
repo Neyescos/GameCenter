@@ -45,9 +45,9 @@ export class LoginComponent implements OnInit {
       setTimeout(()=>{
         console.log('перевел');
         if(correct==true){
-          this.router.navigateByUrl('/users');
+          this.router.navigateByUrl('/clients');
           correct=false;
-      }
+        }
       },400);
     }catch{
       console.log('ошибка логина');

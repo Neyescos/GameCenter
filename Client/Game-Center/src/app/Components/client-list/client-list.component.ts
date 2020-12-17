@@ -29,7 +29,7 @@ export class ClientListComponent implements OnInit {
       );
       
     }catch(err){
-      console.log(err);
+      
       this.router.navigateByUrl('/login');
       console.log('client-list error');
     }

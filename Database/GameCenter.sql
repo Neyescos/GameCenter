@@ -93,4 +93,6 @@ insert into Orders(date,Current_CustomerId,Ordered_DeviceId,AdminId) values
 
 SELECT  *
   FROM [GameCenter].[dbo].[Users] where name='Юра' and password='12345678'
- 
+
+
+SELECT top 1000 * from [GameCenter].[dbo].[Devices]

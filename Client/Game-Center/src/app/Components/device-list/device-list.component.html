@@ -3,25 +3,21 @@
       <mat-icon>home</mat-icon>
     </button>
 </a>
-<a routerLink="/devices">
-  <button mat-raised-button color="warn" aria-label="clients"  style="margin-left:0.4%;">Devices
-  </button> 
-</a>
+<a routerLink="/clients">
+    <button mat-raised-button color="warn" aria-label="clients"  style="margin-left:0.4%;">Clients
+    </button> 
+  </a>
 <div style="margin-left: 50%;">
-  <h2 >Clients</h2>
-  <a routerLink="/addclient">
+  <h2 >Devices</h2>
+  <a routerLink="/adddevice">
     <button mat-raised-button color="primary" >Add</button> 
   </a>
   
 </div>
 <div style=" display: grid;_repeat:(auto-fill, minmax(200px, auto));justify-content: space-evenly;margin-top: 10px;">
-  <app-client *ngFor="let customer of customers"
-  [client] = "customer"
-  ></app-client>
+  <app-device *ngFor="let device of devices"
+  [device] = "device"
+  ></app-device>
 </div>
     
  
-  
-
-
-  

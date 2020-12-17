@@ -76,13 +76,14 @@ app.listen( port, () => {
 */
 
 http.createServer(async function (request:IncomingMessage, response:ServerResponse) {
+    
     modules.set("/users",new UserController);
     modules.set("/",new UserController);
     modules.set("/login",new AuthController);
     modules.set("/devices",new DeviceController);
     modules.set("/customers",new CustomerController);
     modules.set("/playingspaces",new PlayingSpaceController);
-    // modules.set("/Orders",new OrderController);
+    //modules.set("/orders",new Controller);
     response.setHeader("Access-Control-Allow-Origin", "*");
     response.setHeader("Access-Control-Allow-Methods", "*");
     response.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept,authorization');

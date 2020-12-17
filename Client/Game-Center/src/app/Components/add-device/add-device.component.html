@@ -1,0 +1,23 @@
+<h1 style="margin-left:46%;margin-top: 10%;">Add Device</h1>
+<form [formGroup]="myForm"novalidate  style="margin-left:45%;margin-top: 3%;">
+    <br>
+    <mat-form-field>
+        <input matInput placeholder="Device Name" formControlName="name" required> 
+        <mat-error *ngIf="name==null ||name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            Name is required.
+        </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>In nice Condition?</mat-label>
+        <mat-select [(value)]="selectedValue">
+          <mat-option value=true>true</mat-option>
+          <mat-option value=false>false</mat-option>
+        </mat-select>
+        
+      </mat-form-field>
+    <br>
+</form>
+<a routerLink='/devices'>
+    <button mat-raised-button color="primary"(click)="onNewDevice()" style="margin-left: 48%;" *ngIf="selectedValue!=undefined||selectedValue!=null &&name!=null&& name.valid">Submit</button>
+</a>
