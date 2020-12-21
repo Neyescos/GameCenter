@@ -141,7 +141,7 @@ var DeviceController = /** @class */ (function () {
                 data_3 += chunk.toString();
             });
             request.on('end', function () {
-                var obj = parse(data_3);
+                var obj = JSON.parse(data_3);
                 console.log(obj);
                 deviceservice.delete(obj);
                 response.end('Ok');

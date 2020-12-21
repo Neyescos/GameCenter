@@ -54,9 +54,14 @@ export class DeviceService implements Service{
         }
     }
     delete(obj: any): void {
-        let deletequery = `delete Devices where Id=${obj.Id}`;
+        try{
+            let deletequery = `delete Devices where Id=${obj.Id}`;
         console.log(deletequery);
         sql.query(connectionString,deletequery);
+        }catch(err){
+            console.log(err);
+        }
+        
     }
 
 }

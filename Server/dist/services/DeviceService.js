@@ -97,9 +97,14 @@ var DeviceService = /** @class */ (function () {
         }
     };
     DeviceService.prototype.delete = function (obj) {
-        var deletequery = "delete Devices where Id=" + obj.Id;
-        console.log(deletequery);
-        sql.query(connectionString, deletequery);
+        try {
+            var deletequery = "delete Devices where Id=" + obj.Id;
+            console.log(deletequery);
+            sql.query(connectionString, deletequery);
+        }
+        catch (err) {
+            console.log(err);
+        }
     };
     return DeviceService;
 }());

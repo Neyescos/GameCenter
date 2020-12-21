@@ -18,11 +18,16 @@ export class DeviceListService {
     return result;
   }
   postDevice(name:string,in_nice_condition:boolean){
-    let condition = 0;
-    if(in_nice_condition==true){
-      condition=1;
+    console.log(in_nice_condition);
+    let body = `name=${name}`;
+    if(in_nice_condition){
+
+      body+=`&In_Nice_Condition=${1}`;
     }
-    let body = `name=${name}&In_Nice_Condition=${condition}`;
+    else{
+      body+=`&In_Nice_Condition=${0}`;
+    }
+
     let token = localStorage["authorization"].toString();
     let options = {headers:new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('authorization',token)};
     console.log(body);
@@ -40,7 +45,7 @@ export class DeviceListService {
         headers:new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('authorization',token),
         body:{"Id":id}
       };
-      console.log("удаляю клиента");
+      console.log("удаляю устройство");
       
       this.http.delete('http://localhost:3000/devices',options)
           .subscribe((s)=>{console.log(s)

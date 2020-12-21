@@ -106,7 +106,7 @@ export class DeviceController implements Controller{
                     data += chunk.toString();
                 });
                 request.on('end',()=>{
-                    let obj = parse(data);
+                    let obj = JSON.parse(data);
                     console.log(obj);
                     deviceservice.delete(obj);
                     response.end('Ok');

@@ -27,6 +27,7 @@ import { ClientDeleteRequestComponent } from './Components/client-delete-request
 import { DeviceComponent } from './Components/device/device.component';
 import { DeviceListComponent } from './Components/device-list/device-list.component';
 import { AddDeviceComponent } from './Components/add-device/add-device.component';
+import { DeviceDeleteRequestComponent } from './Components/device-delete-request/device-delete-request.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { AddDeviceComponent } from './Components/add-device/add-device.component
     ClientDeleteRequestComponent,
     DeviceComponent,
     DeviceListComponent,
-    AddDeviceComponent
+    AddDeviceComponent,
+    DeviceDeleteRequestComponent
   ],
   imports: [
     BrowserModule,
