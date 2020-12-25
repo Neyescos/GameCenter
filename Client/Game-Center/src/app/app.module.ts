@@ -31,6 +31,7 @@ import { DeviceDeleteRequestComponent } from './Components/device-delete-request
 import { PlayingSpaceListComponent } from './Components/playing-space-list/playing-space-list.component';
 import { PlayingSpaceComponent } from './Components/playing-space/playing-space.component';
 import { AddPlayingSpaceComponent } from './Components/add-playing-space/add-playing-space.component';
+import { PlayingSpaceDeleteRequestComponent } from './Components/playing-space-delete-request/playing-space-delete-request.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import { AddPlayingSpaceComponent } from './Components/add-playing-space/add-pla
     DeviceDeleteRequestComponent,
     PlayingSpaceListComponent,
     PlayingSpaceComponent,
-    AddPlayingSpaceComponent
+    AddPlayingSpaceComponent,
+    PlayingSpaceDeleteRequestComponent
   ],
   imports: [
     BrowserModule,

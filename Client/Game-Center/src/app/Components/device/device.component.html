@@ -2,10 +2,10 @@
     <app-device-delete-request style="position: static;float: right;"
       [deleteDevice]="device"></app-device-delete-request>
     <div style="position: relative;">
-      Название:{{device.name}}
+      <h4>Название:<br/><b>{{device.name}}</b></h4>
+      Номер устройства:<b>{{device.Id}}</b>
       <br/>
-      В хорошем состоянии:
-      {{device.In_Nice_Condition}}
-
+      В хорошем состоянии:<b>{{device.In_Nice_Condition}}</b>
+      
     </div>
 </div>

@@ -19,14 +19,14 @@ export class PlayngSpaceListService {
     return result;
   }
   postSpace(device:number,isEmpty:boolean){
-    console.log(isEmpty);
-    let body = `DeviceId=${device}`;
+    
+    let body = `Gaming_DeviceId=${device}`;
     if(isEmpty){
 
-      body+=`&Is_Empty=${1}`;
+      body+=`&IsEmpty=${1}`;
     }
     else{
-      body+=`&Is_Empty=${0}`;
+      body+=`&IsEmpty=${0}`;
     }
 
     let token = localStorage["authorization"].toString();

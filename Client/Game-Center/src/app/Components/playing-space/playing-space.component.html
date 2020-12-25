@@ -1,12 +1,10 @@
-<div style="border: rgb(2, 2, 2);border-style: solid;border-radius: 6px;padding:35px;border-width: 1px;width: 80%;justify-content:space-evenly;break-inside: avoid;page-break-inside: avoid;margin: 0.7%;">
+<div style="border: rgb(2, 2, 2);border-style: solid;border-radius: 6px;padding:15px;border-width: 1px;width: 80%;justify-content:space-evenly;break-inside: avoid;page-break-inside: avoid;margin-bottom: 13%;">
     
     <div style="position: relative;">
         <h3>Номер места: <h2>{{space.Id}}</h2></h3>
-        <br/>
-        Занятое:{{space.IsEmpty}}
-        <br/>
-        Устройство:
+        <h4>Занятое:<h2>{{space.IsEmpty}}</h2></h4>
+        <h4>Устройство:</h4>
 
     </div>
-     <app-device style="position: static;" *ngFor="let device of devices" [device] = "device"></app-device> 
+     <app-device style="position: static;width:max-content;" *ngFor="let device of devices" [device] = "device"></app-device> 
 </div>
