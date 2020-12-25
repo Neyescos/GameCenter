@@ -1,33 +1,42 @@
 <a routerLink='/playingspaces'>
     <button mat-raised-button color="warn" style="margin:0.4%;" >Back to Playing Spaces</button>
 </a>
-<h1 style="margin-left:50%;margin-right: 50%;margin-top: 10%;">Add Space</h1>
+<h1 style="margin-left:49%;">Add Space</h1>
 <form [formGroup]="myForm"novalidate  style="margin-left:46%;margin-top: 3%;">
     <br>
     
     <br>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" >
         <mat-label>Is Empty?</mat-label>
-        <mat-select [(value)]="selectedState">
+        <mat-select [(value)]="selectedState" formControlName="IsEmpty" required>
           <mat-option value=true>true</mat-option>
           <mat-option value=false>false</mat-option>
         </mat-select>
-        
+        <mat-error *ngIf="IsEmpty==null ||IsEmpty.invalid && (IsEmpty.dirty || IsEmpty.touched)" class="alert alert-danger">
+            Select state please
+        </mat-error>
     </mat-form-field>
 
     <br>
     <mat-form-field appearance="fill" style="width: 50%;right:15%;height: 30%;">
         <mat-label>Choose device</mat-label>
-        <mat-select [(value)]="selectedDeviceId" >
+        <mat-select [(value)]="selectedDeviceId" formControlName="DeviceId" required>
             <div *ngFor="let device of devices" style="width:100%;height: max-content;">
                 <mat-option value={{device.Id}} style="margin-top:0.7%;width:100%;height: max-content;">
                     <app-device [device]="device" style="margin-top:0.7%;">Device</app-device>
                 </mat-option>
             </div>
         </mat-select>
-        
+        <mat-error *ngIf="DeviceId==null ||DeviceId.invalid && (DeviceId.dirty || DeviceId.touched)" class="alert alert-danger">
+            Select device please
+        </mat-error>
+       
       </mat-form-field>
-</form>
-<a routerLink='/playingspaces'>
-    <button mat-raised-button color="primary"(click)="onNewSpace()" style="margin-left: 50%;margin-right: 50%;" >Submit</button>
-</a>
+      
+    </form>
+    
+<button mat-raised-button color="primary"(click)="onNewSpace()"  style="margin-left: 50%;margin-right: 50%;" >Submit
+    <mat-error *ngIf="validationError=='error'" class="alert alert-danger" >
+        Fullfill the fields
+    </mat-error>
+</button>
