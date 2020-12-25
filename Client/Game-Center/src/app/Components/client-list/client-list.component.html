@@ -4,17 +4,21 @@
     </button>
 </a>
 <a routerLink="/devices">
-  <button mat-raised-button color="warn" aria-label="clients"  style="margin-left:0.4%;">Devices
+  <button mat-raised-button color="warn" aria-label="clients"  style="top:0;margin-left:0.4%;position: sticky;">Devices
   </button> 
 </a>
-<div style="margin-left: 50%;">
+<a routerLink="/playingspaces">
+  <button mat-raised-button color="warn" aria-label="spaces"  style="top:0;margin-left:0.4%;position: sticky;">Playing Spaces
+  </button> 
+</a>
+<div style="margin-left: 50%;margin-right: 50%;">
   <h2 >Clients</h2>
   <a routerLink="/addclient">
     <button mat-raised-button color="primary" >Add</button> 
   </a>
   
 </div>
-<div style=" display: grid;_repeat:(auto-fill, minmax(200px, auto));justify-content: space-evenly;margin-top: 10px;">
+<div style="column-count: 3;column-width: 30%;justify-content: space-evenly;margin-top: 10px;">
   <app-client *ngFor="let customer of customers"
   [client] = "customer"
   ></app-client>

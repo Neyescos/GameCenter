@@ -38,18 +38,13 @@ export class DeviceController implements Controller{
     async get(request:IncomingMessage,response:ServerResponse):Promise<any>{
         try{
             let res:string;
-            
             let info = await deviceservice.get().then(()=>{res = deviceservice.getRes()});
-            //console.log(res +'---- INFO');
             setTimeout(() => {
-                
                 response.end(res);
             }, 10);
 
-            
         }catch(err){
             console.log('something is gone wrong');
-            
         }       
     }
     //

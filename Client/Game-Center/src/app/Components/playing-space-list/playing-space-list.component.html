@@ -6,22 +6,20 @@
 <a routerLink="/clients">
     <button mat-raised-button color="warn" aria-label="clients"  style="top:0;margin-left:0.4%;position: sticky;">Clients
     </button> 
-  </a>
-<a routerLink="/playingspaces">
-    <button mat-raised-button color="warn" aria-label="spaces"  style="top:0;margin-left:0.4%;position: sticky;">Playing Spaces
-    </button> 
+</a>
+<a routerLink="/devices">
+  <button mat-raised-button color="warn" aria-label="devices"  style="top:0;margin-left:0.4%;position: sticky;">Devices
+  </button> 
 </a>
 <div style="margin-left: 50%;margin-right: 50%;">
-  <h2 >Devices</h2>
-  <a routerLink="/adddevice">
+  <h2 >Playing Spaces</h2>
+  <a routerLink="/addplayingspace">
     <button mat-raised-button color="primary" >Add</button> 
   </a>
   
 </div>
-<div style="column-count: 3;column-width: 30%;justify-content: space-evenly;margin-top: 10px;">
-  <app-device *ngFor="let device of devices"
-  [device] = "device"
-  ></app-device>
+<div style="column-count: 3;column-width: 30%;justify-content: space-between;margin-top: 10px;height: 100%;">
+  <app-playing-space *ngFor="let space of spaces"
+  [space] = "space"
+  ></app-playing-space>
 </div>
-    
- 

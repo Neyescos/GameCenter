@@ -28,6 +28,9 @@ import { DeviceComponent } from './Components/device/device.component';
 import { DeviceListComponent } from './Components/device-list/device-list.component';
 import { AddDeviceComponent } from './Components/add-device/add-device.component';
 import { DeviceDeleteRequestComponent } from './Components/device-delete-request/device-delete-request.component';
+import { PlayingSpaceListComponent } from './Components/playing-space-list/playing-space-list.component';
+import { PlayingSpaceComponent } from './Components/playing-space/playing-space.component';
+import { AddPlayingSpaceComponent } from './Components/add-playing-space/add-playing-space.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +44,10 @@ import { DeviceDeleteRequestComponent } from './Components/device-delete-request
     DeviceComponent,
     DeviceListComponent,
     AddDeviceComponent,
-    DeviceDeleteRequestComponent
+    DeviceDeleteRequestComponent,
+    PlayingSpaceListComponent,
+    PlayingSpaceComponent,
+    AddPlayingSpaceComponent
   ],
   imports: [
     BrowserModule,

@@ -76,7 +76,6 @@ var DeviceController = /** @class */ (function () {
                         return [4 /*yield*/, deviceservice.get().then(function () { res_1 = deviceservice.getRes(); })];
                     case 1:
                         info = _a.sent();
-                        //console.log(res +'---- INFO');
                         setTimeout(function () {
                             response.end(res_1);
                         }, 10);

@@ -1,8 +1,10 @@
-<div style="border: rgb(2, 2, 2);border-style: solid;border-radius: 6px;padding:10px;border-width: 1px;width: 100%;justify-content:space-evenly;">
-    <app-client-delete-request style="position: relative;float: right;"
+<div style="border: rgb(2, 2, 2);border-style: solid;border-radius: 6px;padding:10px;border-width: 1px;width: 80%;justify-content:space-evenly;margin: 0.7%;page-break-inside: avoid;">
+    <app-client-delete-request style="position: static;float: right;"
       [deleteclient]="client"></app-client-delete-request>
-    Имя:{{client.name}}
-    <br/>
-    Телефон:{{client.phone}}
+    <div style="position: relative;">
+      Имя:{{client.name}}
+      <br/>
+      Телефон:{{client.phone}}
+    </div>
 </div>
 
