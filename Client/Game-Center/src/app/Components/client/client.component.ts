@@ -14,7 +14,6 @@ export class ClientComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.client.Id);
-    this.router.navigateByUrl('/clients');
   }
 
 }

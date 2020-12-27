@@ -1,0 +1,15 @@
+<div style="overflow:hidden;border: rgb(2, 2, 2);border-style: solid;border-radius: 6px;padding:10px;border-width: 1px;width: 80%;page-break-inside: avoid;justify-content:space-evenly;margin: 0.7%;">
+    <app-order-delete-request style="position: static;"
+      [deleteOrder]="order"></app-order-delete-request>
+    <div style="position: relative;">
+      <h2>Номер Заказа:<br/><h2><b>{{order.Id}}</b></h2></h2>
+      <h3>Дата:<b>{{order.date}}</b></h3>
+      <h3>Добавил:</h3>      
+      <app-user [user]="user"></app-user>
+      <h3>Заказанное Устройство:</h3>
+      <app-device style="position: static;width:max-content;" *ngFor="let device of devices" [device] = "device"></app-device> 
+      <h3>Клиент:</h3>
+      <app-client style="position: static;width:max-content;" *ngFor="let client of clients" [client] = "client"></app-client> 
+    </div>
+</div>
+

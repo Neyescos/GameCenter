@@ -97,9 +97,13 @@ var OrderService = /** @class */ (function () {
         }
     };
     OrderService.prototype.delete = function (obj) {
-        var deletequery = "delete Orders where Id=" + obj.Id;
-        console.log(deletequery);
-        sql.query(connectionString, deletequery);
+        try {
+            var deletequery = "delete Orders where Id=" + obj.Id;
+            console.log(deletequery);
+            sql.query(connectionString, deletequery);
+        }
+        catch (err) {
+        }
     };
     return OrderService;
 }());

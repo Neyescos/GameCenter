@@ -36,15 +36,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlayingSpaceController = void 0;
-var PlayingSpacesService_1 = require("../services/PlayingSpacesService");
+exports.OrderController = void 0;
+var OrderService_1 = require("../services/OrderService");
 var verifytoken_1 = require("../verifytoken");
 var parse = require('querystring').parse;
-var PlayingSpaceservice = new PlayingSpacesService_1.PlayingSpacesService;
-var PlayingSpaceController = /** @class */ (function () {
-    function PlayingSpaceController() {
+var orderService = new OrderService_1.OrderService;
+var OrderController = /** @class */ (function () {
+    function OrderController() {
     }
-    PlayingSpaceController.prototype.Execute = function (request, response) {
+    OrderController.prototype.Execute = function (request, response) {
         var querystring = require('querystring');
         var ver = new verifytoken_1.Verify;
         ver.verify(request, response);
@@ -65,15 +65,15 @@ var PlayingSpaceController = /** @class */ (function () {
     };
     //
     //sql select service
-    //PlayingSpaceservice.get();
-    PlayingSpaceController.prototype.get = function (request, response) {
+    //OrderService.get();
+    OrderController.prototype.get = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
             var res_1, info, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, PlayingSpaceservice.get().then(function () { res_1 = PlayingSpaceservice.getRes(); })];
+                        return [4 /*yield*/, orderService.get().then(function () { res_1 = orderService.getRes(); })];
                     case 1:
                         info = _a.sent();
                         //console.log(res +'---- INFO');
@@ -92,8 +92,8 @@ var PlayingSpaceController = /** @class */ (function () {
     };
     //
     //sql insert service
-    //PlayingSpaceservice.post(obj);
-    PlayingSpaceController.prototype.post = function (request, response) {
+    //orderService.post(obj);
+    OrderController.prototype.post = function (request, response) {
         try {
             var data_1 = '';
             request.on('data', function (chunk) {
@@ -102,7 +102,7 @@ var PlayingSpaceController = /** @class */ (function () {
             request.on('end', function () {
                 var obj = parse(data_1);
                 console.log(obj);
-                PlayingSpaceservice.post(obj);
+                orderService.post(obj);
                 response.end('Ok');
             });
         }
@@ -113,8 +113,8 @@ var PlayingSpaceController = /** @class */ (function () {
     };
     //
     //sql put service
-    //PlayingSpaceservice.put(obj);
-    PlayingSpaceController.prototype.put = function (request, response) {
+    //orderService.put(obj);
+    OrderController.prototype.put = function (request, response) {
         try {
             var data_2 = '';
             request.on('data', function (chunk) {
@@ -123,7 +123,7 @@ var PlayingSpaceController = /** @class */ (function () {
             request.on('end', function () {
                 var obj = parse(data_2);
                 console.log(obj);
-                PlayingSpaceservice.put(obj);
+                orderService.put(obj);
                 response.end('Ok');
             });
         }
@@ -133,8 +133,8 @@ var PlayingSpaceController = /** @class */ (function () {
     };
     //
     //sql delete service
-    //PlayingSpaceservice.delete(obj);
-    PlayingSpaceController.prototype.delete = function (request, response) {
+    //orderService.delete(obj);
+    OrderController.prototype.delete = function (request, response) {
         try {
             var data_3 = '';
             request.on('data', function (chunk) {
@@ -143,7 +143,7 @@ var PlayingSpaceController = /** @class */ (function () {
             request.on('end', function () {
                 var obj = JSON.parse(data_3);
                 console.log(obj);
-                PlayingSpaceservice.delete(obj);
+                orderService.delete(obj);
                 response.end('Ok');
             });
         }
@@ -151,6 +151,6 @@ var PlayingSpaceController = /** @class */ (function () {
             console.log(err);
         }
     };
-    return PlayingSpaceController;
+    return OrderController;
 }());
-exports.PlayingSpaceController = PlayingSpaceController;
+exports.OrderController = OrderController;

@@ -32,6 +32,10 @@ import { PlayingSpaceListComponent } from './Components/playing-space-list/playi
 import { PlayingSpaceComponent } from './Components/playing-space/playing-space.component';
 import { AddPlayingSpaceComponent } from './Components/add-playing-space/add-playing-space.component';
 import { PlayingSpaceDeleteRequestComponent } from './Components/playing-space-delete-request/playing-space-delete-request.component';
+import { OrderComponent } from './Components/order/order.component';
+import { OrderListComponent } from './Components/order-list/order-list.component';
+import { AddOrderComponent } from './Components/add-order/add-order.component';
+import { OrderDeleteRequestComponent } from './Components/order-delete-request/order-delete-request.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +53,11 @@ import { PlayingSpaceDeleteRequestComponent } from './Components/playing-space-d
     PlayingSpaceListComponent,
     PlayingSpaceComponent,
     AddPlayingSpaceComponent,
-    PlayingSpaceDeleteRequestComponent
+    PlayingSpaceDeleteRequestComponent,
+    OrderComponent,
+    OrderListComponent,
+    AddOrderComponent,
+    OrderDeleteRequestComponent
   ],
   imports: [
     BrowserModule,

@@ -17,8 +17,6 @@ export class UserListComponent implements OnInit {
     console.log("loaded");
     
     try{
-      //const myHeaders = new HttpHeaders().set('Authorization', 'my-auth-token');
-      let myToken;
       this.service.getUsers().subscribe(
         result =>{
           result.forEach(user => {

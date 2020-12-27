@@ -1,0 +1,35 @@
+<nav  >
+    <a routerLink="/login">
+        <button mat-raised-button color="warn" aria-label="home" style="top:0;margin-left:0.4%;"(click)='clearStorages()'>
+          <mat-icon>home</mat-icon>
+        </button>
+    </a>
+    <a routerLink="/clients">
+        <button mat-raised-button color="warn" aria-label="clients"  style="top:0;margin-left:0.4%;">Clients
+        </button> 
+    </a>
+    <a routerLink="/devices">
+      <button mat-raised-button color="warn" aria-label="devices"  style="top:0;margin-left:0.4%;">Devices
+      </button> 
+    </a>
+    <a routerLink="/playingspaces">
+      <button mat-raised-button color="warn" aria-label="devices"  style="top:0;margin-left:0.4%;">Playing Spaces
+      </button> 
+    </a>
+  </nav>
+  <div style="margin-left: 50%;margin-right: 50%;">
+    <h2 >Orders</h2>
+    <a routerLink="/addorder">
+      <button mat-raised-button color="primary" >Add</button> 
+    </a>
+    
+  </div>
+  <mat-list>
+    <mat-divider></mat-divider>
+  </mat-list>
+  <div  style="column-count: 3;column-width: 100%;justify-content: space-evenly;margin-top: 10px;margin-left: 3%;">
+    <app-order *ngFor="let order of orders"
+    [order] = "order"
+    ></app-order>
+  </div>
+  

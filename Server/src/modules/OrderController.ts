@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { request } from "https";
-import { PlayingSpacesService } from "../services/PlayingSpacesService";
+import { OrderService } from "../services/OrderService";
 import { promises } from "dns";
 
 import { SqlClient } from "msnodesqlv8";
@@ -12,8 +12,8 @@ import { Controller } from "./Controller";
 import { Verify } from "../verifytoken";
 import { json } from "body-parser";
 const { parse } = require('querystring');
-let PlayingSpaceservice = new PlayingSpacesService;
-export class PlayingSpaceController implements Controller{
+let orderService = new OrderService;
+export class OrderController implements Controller{
     Execute(request: IncomingMessage, response: ServerResponse): void {
         const querystring = require('querystring')
         let ver = new Verify;
@@ -35,12 +35,12 @@ export class PlayingSpaceController implements Controller{
     }
     //
     //sql select service
-    //PlayingSpaceservice.get();
+    //OrderService.get();
     async get(request:IncomingMessage,response:ServerResponse):Promise<any>{
         try{
             let res:string;
             
-            let info = await PlayingSpaceservice.get().then(()=>{res = PlayingSpaceservice.getRes()});
+            let info = await orderService.get().then(()=>{res = orderService.getRes()});
             //console.log(res +'---- INFO');
             setTimeout(() => {
                 
@@ -55,7 +55,7 @@ export class PlayingSpaceController implements Controller{
     }
     //
     //sql insert service
-    //PlayingSpaceservice.post(obj);
+    //orderService.post(obj);
     post(request:IncomingMessage,response:ServerResponse):void{
         try{
                 let data = '';
@@ -66,7 +66,7 @@ export class PlayingSpaceController implements Controller{
                     
                     let obj = parse(data);
                     console.log(obj);
-                    PlayingSpaceservice.post(obj);      
+                    orderService.post(obj);      
                     response.end('Ok');
                 }
                 );
@@ -78,7 +78,7 @@ export class PlayingSpaceController implements Controller{
     }
      //
     //sql put service
-    //PlayingSpaceservice.put(obj);
+    //orderService.put(obj);
     put(request:IncomingMessage,response:ServerResponse):void{
         try{
             let data = '';
@@ -88,7 +88,7 @@ export class PlayingSpaceController implements Controller{
                 request.on('end',()=>{
                     let obj = parse(data);
                     console.log(obj);
-                    PlayingSpaceservice.put(obj);
+                    orderService.put(obj);
                     response.end('Ok');
                 }
                 );
@@ -99,7 +99,7 @@ export class PlayingSpaceController implements Controller{
     }
     //
     //sql delete service
-    //PlayingSpaceservice.delete(obj);
+    //orderService.delete(obj);
     delete(request:IncomingMessage,response:ServerResponse):void{
         try{
             let data = '';
@@ -109,7 +109,7 @@ export class PlayingSpaceController implements Controller{
             request.on('end',()=>{
                 let obj =JSON.parse(data);
                 console.log(obj);
-                PlayingSpaceservice.delete(obj);
+                orderService.delete(obj);
                 response.end('Ok');
             }
             );

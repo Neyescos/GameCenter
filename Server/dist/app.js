@@ -68,6 +68,7 @@ var modules = new Map();
 var express_1 = __importDefault(require("express"));
 var CustomerController_1 = require("./modules/CustomerController");
 var PlayingSpaceController_1 = require("./modules/PlayingSpaceController");
+var OrderController_1 = require("./modules/OrderController");
 var app = express_1.default();
 var port = 3000; // default port to listen
 modules.set("/users", new UserController_1.UserController);
@@ -135,7 +136,7 @@ http.createServer(function (request, response) {
             modules.set("/devices", new DeviceController_1.DeviceController);
             modules.set("/customers", new CustomerController_1.CustomerController);
             modules.set("/playingspaces", new PlayingSpaceController_1.PlayingSpaceController);
-            //modules.set("/orders",new Controller);
+            modules.set("/orders", new OrderController_1.OrderController);
             response.setHeader("Access-Control-Allow-Origin", "*");
             response.setHeader("Access-Control-Allow-Methods", "*");
             response.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept,authorization');

@@ -55,8 +55,14 @@ export class OrderService implements Service{
         }
     }
     delete(obj: any): void {
-        let deletequery = `delete Orders where Id=${obj.Id}`;
-        console.log(deletequery);
-        sql.query(connectionString,deletequery);
+        try{
+            let deletequery = `delete Orders where Id=${obj.Id}`;
+            console.log(deletequery);
+            sql.query(connectionString,deletequery);
+
+        }
+        catch(err){
+
+        }
     }
 }

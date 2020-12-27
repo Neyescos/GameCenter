@@ -14,7 +14,7 @@ import express from "express";
 import path from "path";
 import { CustomerController } from "./modules/CustomerController";
 import { PlayingSpaceController } from "./modules/PlayingSpaceController";
-
+import{OrderController} from "./modules/OrderController";
 const app = express();
 const port = 3000; // default port to listen
 modules.set("/users",new UserController);
@@ -83,7 +83,7 @@ http.createServer(async function (request:IncomingMessage, response:ServerRespon
     modules.set("/devices",new DeviceController);
     modules.set("/customers",new CustomerController);
     modules.set("/playingspaces",new PlayingSpaceController);
-    //modules.set("/orders",new Controller);
+    modules.set("/orders",new OrderController);
     response.setHeader("Access-Control-Allow-Origin", "*");
     response.setHeader("Access-Control-Allow-Methods", "*");
     response.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept,authorization');

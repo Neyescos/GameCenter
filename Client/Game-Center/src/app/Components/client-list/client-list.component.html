@@ -1,16 +1,21 @@
-<nav>
+<nav style="position: sticky;">
   
   <a routerLink="/login">
-      <button mat-raised-button color="warn" aria-label="home" style="top:0;position:sticky;margin-left:0.4%;"(click)='clearStorages()'>
+      <button mat-raised-button color="warn" aria-label="home" style="margin-top: 0.4%;top:0;margin-left:0.4%;"(click)='clearStorages()'>
         <mat-icon>home</mat-icon>
       </button>
   </a>
   <a routerLink="/devices">
-    <button mat-raised-button color="warn" aria-label="clients"  style="top:0;margin-left:0.4%;position: sticky;">Devices
+    <button mat-raised-button color="warn" aria-label="clients"  style="margin-top: 0.4%;top:0;margin-left:0.4%">Devices
     </button> 
   </a>
   <a routerLink="/playingspaces">
-    <button mat-raised-button color="warn" aria-label="spaces"  style="top:0;margin-left:0.4%;position: sticky;">Playing Spaces
+    <button mat-raised-button color="warn" aria-label="spaces"  style="margin-top: 0.4%;top:0;margin-left:0.4%;">Playing Spaces
+    </button> 
+  </a>
+
+  <a routerLink="/orders">
+    <button mat-raised-button color="warn" aria-label="spaces"  style="margin-top: 0.4%;top:0;margin-left:0.4%;">Orders
     </button> 
   </a>
 
