@@ -61,8 +61,8 @@ export class AuthController implements Controller{
                         console.log(JSON.stringify(result)+" --- User found");
                         
                         console.log(token);
-                        
-                        if(result!=null)response.end(JSON.stringify({token:`${token}`,name:'Authorization'}));
+                        //console.log(JSON.stringify({token:`${token}`,name:'Authorization',user:result}));
+                        if(result!=null)response.end(JSON.stringify({token:`${token}`,name:'Authorization',user:result.Id}));
                         else response.statusCode;
                     }  
 

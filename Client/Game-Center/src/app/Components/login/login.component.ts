@@ -35,8 +35,11 @@ export class LoginComponent implements OnInit {
       //const myHeaders = new HttpHeaders().set('Authorization', 'my-auth-token');
       this.service.login(this.myForm.get('username')?.value,this.myForm.get('password')?.value).subscribe(
         result =>{
-          if(result.token!='Invalid values')
-          localStorage.setItem('authorization',result.token);
+          if(result.token!='Invalid values'){
+
+            localStorage.setItem('authorization',result.token);
+            localStorage.setItem('UserId',result.user.toString());
+          }
           else{
             correct=false;
           }
