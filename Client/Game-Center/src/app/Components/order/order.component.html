@@ -3,9 +3,9 @@
       [deleteOrder]="order"></app-order-delete-request>
     <div style="position: relative;">
       <h2>Номер Заказа:<br/><h2><b>{{order.Id}}</b></h2></h2>
-      <h3>Дата:<b>{{order.date}}</b></h3>
+      <h3>Дата:<b>{{getDate()}}</b></h3>
       <h3>Добавил:</h3>      
-      <app-user [user]="user"></app-user>
+      <app-user *ngFor="let user of users" [user]="user"></app-user>
       <h3>Заказанное Устройство:</h3>
       <app-device style="position: static;width:max-content;" *ngFor="let device of devices" [device] = "device"></app-device> 
       <h3>Клиент:</h3>

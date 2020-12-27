@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
 import { combineAll } from 'rxjs/operators';
 import { ClientService } from 'src/app/client-list.service';
 import { DeviceListService } from 'src/app/device-list.service';
@@ -16,6 +17,7 @@ import { UserComponent } from '../user/user.component';
 })
 export class OrderComponent implements OnInit {
   @Input() order!:Order;
+
   devices: Device[]=[];
   clients: Client[]=[];
   users: User[]=[];
@@ -56,9 +58,9 @@ export class OrderComponent implements OnInit {
           result.forEach(user=>{
             if(user.Id==this.order.AdminId){
               this.user=user;
+              this.users.push(user);
             }
             
-            //this.users.push(user);
           });
           }
         );
@@ -69,7 +71,12 @@ export class OrderComponent implements OnInit {
     }
     
   }
+  getDate():string{
+    let date = new Date(this.order.date);
+    return `${date.getDate()}-${date.getMonth()}-${date.getUTCFullYear()}`;
+  }
   ngOnInit(): void {
+    
     console.log(this.order);
     this.getClient();
     this.getAdmin();

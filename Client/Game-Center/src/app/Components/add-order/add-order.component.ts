@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ClientService } from 'src/app/client-list.service';
 import { DeviceListService } from 'src/app/device-list.service';
 import { OrderListService } from 'src/app/order-list.service';
@@ -14,24 +15,28 @@ import { User } from '../user';
 })
 export class AddOrderComponent implements OnInit {
   myForm: FormGroup = new FormGroup({
-    "date":new FormControl("",Validators.required),
     "client":new FormControl("",[Validators.required]),
     "device":new FormControl("",[Validators.required])
   });
-  selectedDate!:Date;
+  MyDate = new Date();
+  date = new FormControl();
+  validationError!:string;
+  selectedDate!:string;
   selectedClientId!:number;
   selectedDeviceId!:number;
-  currentUserId!:number;
+  currentUserId!:string;
   devices:Device[]=[];
   clients:Client[]=[];
   user!:User;
 
-  constructor(private service:OrderListService,private deviceService:DeviceListService,private clientService:ClientService) { }
-  get date(){ return this.myForm.get('date');}
+  constructor(private service:OrderListService,private deviceService:DeviceListService,private clientService:ClientService,private router:Router) { }
   get client(){ return this.myForm.get('client');}
   get device(){ return this.myForm.get('device');}
   ngOnInit(): void {
     this.myForm.valueChanges.subscribe(console.log);
+    this.getDevice();
+    this.getClient();
+    this.getAdmin();
   }
   getDevice(){
     
@@ -54,14 +59,27 @@ export class AddOrderComponent implements OnInit {
     );
   }
   getAdmin(){
-    if(localStorage.getItem('user')!=null){
-      let id=localStorage.getItem('user');
-      this.currentUserId =Number(id);
+    try{
+      this.currentUserId=localStorage.getItem('UserId')||'';
     }
+    catch(err){
+      console.log(err);
+    }
+    
   }
   onNewDevice(){ 
     try{
-      this.service.postOrder(this.selectedDate,this.selectedDeviceId,this.currentUserId,this.selectedClientId);
+      this.MyDate= this.date.value;
+      console.log(this.MyDate.getDate()+'/'+this.MyDate.getMonth()+'/'+this.MyDate.getFullYear());
+      if(this.selectedDeviceId==null || this.date.value==null||this.selectedClientId==null){
+        this.validationError="error";
+      }
+      else{
+        
+        console.log(this.MyDate.getDate()+'/'+this.MyDate.getMonth()+'/'+this.MyDate.getFullYear(),this.selectedDeviceId,this.currentUserId,this.selectedClientId);
+        this.service.postOrder(this.MyDate.getMonth()+'-'+this.MyDate.getDate()+'-'+this.MyDate.getFullYear(),this.selectedDeviceId,this.currentUserId,this.selectedClientId);
+        this.router.navigateByUrl('/orders');
+      }
     }
     catch(err){
       console.log(err);

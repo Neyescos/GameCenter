@@ -17,9 +17,9 @@ export class OrderListService {
     result = this.http.get<Order[]>('http://localhost:3000/orders',options); 
     return result;
   }
-  postOrder(date:Date,DeviceId:number,AdminId:number,CustomerId:number){
+  postOrder(date:string,DeviceId:number,AdminId:string,CustomerId:number){
     
-    let body = `date=${date},Current_CustomerId=${CustomerId},Ordered_DeviceId=${DeviceId},AdminId=${AdminId}`;
+    let body = `date=${date}&Current_CustomerId=${CustomerId}&Ordered_DeviceId=${DeviceId}&AdminId=${AdminId}`;
     
     let token = localStorage["authorization"].toString();
     let options = {headers:new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('authorization',token)};

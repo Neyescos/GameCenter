@@ -1,1 +1,53 @@
-<p>add-order works!</p>
+<a routerLink='/orders'>
+    <button mat-raised-button color="warn" style="margin:0.4%;" >Back to Orders</button>
+</a>
+<h1 style="margin-left:49%;">Add Order</h1>
+<form [formGroup]="myForm"novalidate  style="margin-left:46%;margin-top: 3%;">
+    <br>
+    <mat-form-field appearance="fill" style="width: 50%;right:15%;height: 30%;">
+        <mat-label>Choose device</mat-label>
+        <mat-select [(value)]="selectedDeviceId" formControlName="device" required>
+            <div *ngFor="let device of devices" style="width:100%;height: max-content;">
+                <mat-option value={{device.Id}} style="margin-top:0.7%;width:100%;height: max-content;">
+                    <app-device [device]="device" style="margin-top:0.7%;">Device</app-device>
+                </mat-option>
+            </div>
+        </mat-select>
+        <mat-error *ngIf="device==null ||device.invalid && (device.dirty || device.touched)" class="alert alert-danger">
+            Select device please
+        </mat-error>
+    
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill" style="width: 50%;right:15%;height: 30%;">
+        <mat-label>Choose client</mat-label>
+        <mat-select [(value)]="selectedClientId" formControlName="client" required>
+            <div *ngFor="let client of clients" style="width:100%;height: max-content;">
+                <mat-option value={{client.Id}} style="margin-top:0.7%;width:100%;height: max-content;">
+                    <app-client [client]="client" style="margin-top:0.7%;">Device</app-client>
+                </mat-option>
+            </div>
+        </mat-select>
+        <mat-error *ngIf="client==null ||client.invalid && (client.dirty || client.touched)" class="alert alert-danger">
+            Select client please
+        </mat-error>
+    </mat-form-field>
+    <br>
+      <mat-form-field color="accent" appearance="fill" >
+        <mat-label>Enter the date</mat-label>
+        <input matInput [matDatepicker]="picker" [formControl]="date" >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker color="primary"></mat-datepicker>
+      </mat-form-field>
+       
+      
+      
+      
+    </form>
+    
+<button mat-raised-button color="primary"(click)="onNewDevice()"  style="margin-left: 50%;margin-right: 50%;" >Submit
+    <mat-error *ngIf="validationError=='error'" class="alert alert-danger" >
+        Fullfill the fields
+    </mat-error>
+</button>
+

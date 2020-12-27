@@ -76,7 +76,7 @@ var OrderService = /** @class */ (function () {
     };
     OrderService.prototype.post = function (obj) {
         try {
-            var postquery = "insert into Orders values('" + obj.date + "','" + obj.Current_CustomerId.toString() + "','" + obj.Ordered_DeviceId + "','" + obj.AdminId + "')";
+            var postquery = "insert into Orders values(" + obj.date + "','" + obj.Current_CustomerId + "','" + obj.Ordered_DeviceId + "','" + obj.AdminId + "')";
             console.log(postquery);
             sql.query(connectionString, postquery);
         }

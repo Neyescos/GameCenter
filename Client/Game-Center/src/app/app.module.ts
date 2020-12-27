@@ -36,6 +36,20 @@ import { OrderComponent } from './Components/order/order.component';
 import { OrderListComponent } from './Components/order-list/order-list.component';
 import { AddOrderComponent } from './Components/add-order/add-order.component';
 import { OrderDeleteRequestComponent } from './Components/order-delete-request/order-delete-request.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatetimePickerInputEvent } from '@angular-material-components/datetime-picker';
+import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+export const DateFormat = {
+  parse: {
+    dateInput: 'DD-MM-YYYY',
+  },
+  display: {
+    dateInput: 'MMM DD, YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
+  },
+ };
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,9 +86,14 @@ import { OrderDeleteRequestComponent } from './Components/order-delete-request/o
     MatListModule,
     MatCardModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    
   ],
-  providers: [],
+  providers: [ 
+    {provide: MAT_DATE_FORMATS, useValue:DateFormat}
+ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -32,7 +32,7 @@ export class OrderService implements Service{
     post(obj: any): void {
         try{
         
-            let postquery = `insert into Orders values('${obj.date}','${obj.Current_CustomerId.toString()}','${obj.Ordered_DeviceId}','${obj.AdminId}')`;
+            let postquery = `insert into Orders values(${obj.date}','${obj.Current_CustomerId}','${obj.Ordered_DeviceId}','${obj.AdminId}')`;
             console.log(postquery);
             sql.query(connectionString,postquery);
                 
